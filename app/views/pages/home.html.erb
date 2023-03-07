@@ -1,2 +1,11 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<%= form_with url: places_search_path, method: :get do |form| %>
+  <div data-controller='locator' class='d-none'>
+    <%= form.text_area :latitude, data: { locator_target: 'latitude'} %>
+    <%= form.text_area :longitude, data: { locator_target: 'longitude'} %>
+  </div>
+  <%= form.text_area :query %>
+  <%= form.submit %>
+<% end %>
