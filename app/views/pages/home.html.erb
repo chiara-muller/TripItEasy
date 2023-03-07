@@ -1,2 +1,258 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+      <div class="col-8 col-lg-3">
+        <%= form_with url: :root, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a place"
+          %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+  <div class='range'>
+  <p>Maximum Distance</p>
+      <input type="range" min='0' max='20' step='2' />
+      <span>10</span>
+    </div>
+  <p> </p>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+    integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+    crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+      $(function(){
+
+      $('.range input').on('mousemove', function(){
+        var getValRange = $(this).val();
+        $('.range span').text(getValRange + 'km');
+      });
+      });
+    </script>
+
+
+  <div class="dropdownaction">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
+        Eat/Drink
+      </button>
+      <ul class="dropdown-menu">
+        <li class="checkbox">
+      <input class="checkbox-flip" type="checkbox" id="check1"/>
+      <label for="check1"><span></span>Restaurant</label>
+        </li>
+        <li class="checkbox">
+      <input class="checkbox-flip" type="checkbox" id="check1"/>
+      <label for="check1"><span></span>Cafe</label>
+        </li>
+        <li class="checkbox">
+      <input class="checkbox-flip" type="checkbox" id="check1"/>
+      <label for="check1"><span></span>Bar</label>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li class="checkbox">
+      <input class="checkbox-flip" type="checkbox" id="check1"/>
+      <label for="check1"><span></span>All</label>
+        </li>
+      </ul>
+    </div>
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
+        Visit
+      </button>
+      <ul class="dropdown-menu">
+        <li class="checkbox">
+          <label class="custom-checkbox">
+            <input type="hidden" name="alarm" value="False" />
+            <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+            <span class="custom-checkbox-text">Event</span>
+          </label>
+        </li>
+        <li class="checkbox">
+          <label class="custom-checkbox">
+            <input type="hidden" name="alarm" value="False" />
+            <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+            <span class="custom-checkbox-text">Any</span>
+          </label>
+        </li>
+        <li class="checkbox">
+          <label class="custom-checkbox">
+            <input type="hidden" name="alarm" value="False" />
+            <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+            <span class="custom-checkbox-text">Any</span>
+          </label>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li class="checkbox">
+          <label class="custom-checkbox">
+            <input type="hidden" name="alarm" value="False" />
+            <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+            <span class="custom-checkbox-text">All</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div>
+    <label class="custom-checkbox">
+      <input type="hidden" name="alarm" value="False" />
+      <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+      <span class="custom-checkbox-text">Any</span>
+    </label>
+
+      <label class="custom-checkbox">
+      <input type="hidden" name="alarm" value="False" />
+      <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+      <span class="custom-checkbox-text">$</span>
+    </label>
+
+      <label class="custom-checkbox">
+      <input type="hidden" name="alarm" value="False" />
+      <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+      <span class="custom-checkbox-text">$$</span>
+    </label>
+
+      <label class="custom-checkbox">
+      <input type="hidden" name="alarm" value="False" />
+      <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+      <span class="custom-checkbox-text">$$$</span>
+    </label>
+  </div>
+
+
+<h1>Dropdown Checkboxes</h1>
+
+<div class="dropdown btn btn-primary" data-control="checkbox-dropdown">
+  <label class="dropdown-label ">Select</label>
+
+  <div class="dropdown-list">
+    <a href="#" data-toggle="check-all" class="dropdown-option">
+      Any
+    </a>
+
+    <label class="custom-checkbox">
+      <input type="hidden" name="alarm" value="False" />
+      <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+      <span class="custom-checkbox-text">Event</span>
+    </label>
+
+
+    <label class="custom-checkbox">
+      <input type="hidden" name="alarm" value="False" />
+      <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+      <span class="custom-checkbox-text">Event</span>
+    </label>
+
+    <label class="custom-checkbox">
+      <input type="hidden" name="alarm" value="False" />
+      <input class="custom-checkbox-input" name="alarm" value="True" type="checkbox">
+      <span class="custom-checkbox-text">Event</span>
+    </label>
+  </div>
+</div>
+</div>
+
+<div>
+<%= link_to "Randomize", place_path %>
+</div>
+
+<script type="text/javascript">
+(function($) {
+  var CheckboxDropdown = function(el) {
+    var _this = this;
+    this.isOpen = false;
+    this.areAllChecked = false;
+    this.$el = $(el);
+    this.$label = this.$el.find('.dropdown-label');
+    this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
+    this.$inputs = this.$el.find('[type="checkbox"]');
+
+    this.onCheckBox();
+
+    this.$label.on('click', function(e) {
+      e.preventDefault();
+      _this.toggleOpen();
+    });
+
+    this.$checkAll.on('click', function(e) {
+      e.preventDefault();
+      _this.onCheckAll();
+    });
+
+    this.$inputs.on('change', function(e) {
+      _this.onCheckBox();
+    });
+  };
+
+  CheckboxDropdown.prototype.onCheckBox = function() {
+    this.updateStatus();
+  };
+
+  CheckboxDropdown.prototype.updateStatus = function() {
+    var checked = this.$el.find(':checked');
+
+    this.areAllChecked = false;
+    this.$checkAll.html('Any');
+
+    if(checked.length <= 0) {
+      this.$label.html('Select Options');
+    }
+    else if(checked.length === 1) {
+      this.$label.html(checked.parent('label').text());
+    }
+    else if(checked.length === this.$inputs.length) {
+      this.$label.html('All Selected');
+      this.areAllChecked = true;
+      this.$checkAll.html('Any');
+    }
+    else {
+      this.$label.html(checked.length + ' Selected');
+    }
+  };
+
+  CheckboxDropdown.prototype.onCheckAll = function(checkAll) {
+    if(!this.areAllChecked || checkAll) {
+      this.areAllChecked = true;
+      this.$checkAll.html('Any');
+      this.$inputs.prop('checked', true);
+    }
+    else {
+      this.areAllChecked = false;
+      this.$checkAll.html('Any');
+      this.$inputs.prop('checked', false);
+    }
+
+    this.updateStatus();
+  };
+
+  CheckboxDropdown.prototype.toggleOpen = function(forceOpen) {
+    var _this = this;
+
+    if(!this.isOpen || forceOpen) {
+       this.isOpen = true;
+       this.$el.addClass('on');
+      $(document).on('click', function(e) {
+        if(!$(e.target).closest('[data-control]').length) {
+         _this.toggleOpen();
+        }
+      });
+    }
+    else {
+      this.isOpen = false;
+      this.$el.removeClass('on');
+      $(document).off('click');
+    }
+  };
+
+  var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
+  for(var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
+    new CheckboxDropdown(checkboxesDropdowns[i]);
+  }
+})(jQuery);
+</script>
+</div>
