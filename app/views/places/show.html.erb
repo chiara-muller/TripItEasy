@@ -1,2 +1,60 @@
-<h1>Places#show</h1>
-<p>Find me in app/views/places/show.html.erb</p>
+
+<div class="container all-show">
+  <div class= "bookmark-div">
+    <% if !current_user %>
+      <%= form_with(model: [@place, Bookmark.new], url: place_bookmarks_path(@place), method: :post, local: true) do |f| %>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-bookmark"></i>
+        </button>
+      <% end %>
+    <% else %>
+      <% @bookmark = @place.bookmarks.find_by(user_id: current_user.id) %>
+      <% if @bookmark %>
+        <%= form_with(model: [@place, @bookmark], url: place_bookmark_path(@place, @bookmark), method: :delete, local: true) do |f| %>
+          <button type="submit" class="btn btn-success">
+            <i class="fas fa-bookmark"></i>
+          </button>
+        <% end %>
+      <% else %>
+        <%= form_with(model: [@place, Bookmark.new], url: place_bookmarks_path(@place), method: :post, local: true) do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-bookmark"></i>
+          </button>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h2><strong><%= "PLACE NAME"  %></strong></h2>
+  </div>
+
+  <div>
+    <h5><%= "285 Brunswick St, Fitzroy VIC 3065" %></h5>
+  </div>
+
+  <div>
+    <p><%= "Tapas-style plates and infused vodka served in swanky digs with a rooftop bar and antique still." %></p>
+  </div>
+
+  <div>
+    <p><%= " * * * * *" %></p>
+  </div>
+
+  <div class="photo" >
+    <div class="square">
+      <img class="squarePhoto" src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png" alt="photo">
+      <img class="squarePhoto" src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png" alt="photo">
+    </div>
+
+    <div class="reqtangle">
+      <img class="reqtanglePhoto" src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png" alt="">
+    </div>
+  </div>
+
+  <div class="bottom-buttons-div">
+  <a class= "bottom-buttons" href="www.google.com">Open in maps</a>
+  <%= link_to "Randomise Again", place_path, class: "bottom-buttons" %>
+  </div>
+</div>

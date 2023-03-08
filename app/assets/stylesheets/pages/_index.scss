@@ -1,2 +1,95 @@
 // Import page-specific CSS files here.
 @import "home";
+
+body {
+  background: #bcbcbc;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  background: #6d6d6d;
+  margin: 0px, 90px;
+  width: 330;
+}
+
+body.home {
+  background: gray;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.custom-checkbox {
+  margin-top: 10px;
+}
+
+.photo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  display: flex;
+  flex-direction: column;
+}
+
+.squarePhoto {
+  width: 120px;
+  height: 120px;
+  margin: 7px;
+}
+
+.reqtanglePhoto {
+  width: 120px;
+  height: 254px;
+  margin: 7px;
+}
+
+.bottom-buttons {
+  margin: 7px;
+  text-decoration: none;
+  padding: 3px 10px;
+  background-color: #bfbfbf;
+  border-radius: 5px;
+  color: white;
+  width: 119px;
+  font-size: 11px;
+  text-align: center;
+}
+
+.bottom-buttons-div {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.all-show {
+  margin-top: 20px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+.bookmark-div {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.bookmark {
+  margin-top: 5px;
+  color: white;
+  font-size: 20px;
+}
+
+p {
+  font-size: 13px;
+  color: rgb(201, 201, 201);
+}

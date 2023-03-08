@@ -1,0 +1,5 @@
+<% @bookmarks.each do |bookmark| %>
+  <h2><strong>Name:</strong> <%= bookmark.place.name %></p>
+<% end %>
+
+<%=  link_to "go back", place_path(1) %>

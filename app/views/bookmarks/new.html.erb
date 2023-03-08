@@ -1,0 +1,9 @@
+<div class="row g-3">
+<%= simple_form_for [@place, @bookmark] do |item| %>
+  <div class="col">
+  <%= item.input :start_date_time, as: :date, html5: true, class:"form-control" %>
+  <div class="col">
+  <%= item.input :end_date_time, as: :date, html5: true, class:"form-control" %>
+  <%=%>
+  <%= item.submit "Bookmark Place", class: "btn btn-primary" %>
+<% end %>
