@@ -37,17 +37,17 @@ class PlacesController < ApplicationController
         place_id = first_result['place_id']
         name = first_result['name']
         address = first_result['formatted_address']
-        photos = first_result['photos'].map { |photo| photo['photo_reference']}
         coordinates = first_result['geometry']['location']
-        url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=photo&key=#{ENV["GOOGLE_API"]}"
-        uri = URI(url)
-        response = Net::HTTP.get(uri)
-        details = JSON.parse(response)['result']
-        if details['photos']
-          photo_reference = details['photos'].first['photo_reference']
-          photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV["GOOGLE_API"]}"
-          puts photo_url
-        end
+        photos = first_result['photos'].map { |photo| photo['photo_reference']}
+        # url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=photo&key=#{ENV["GOOGLE_API"]}"
+        # uri = URI(url)
+        # response = Net::HTTP.get(uri)
+        # details = JSON.parse(response)['result']
+        # if details['photos']
+        #   photo_reference = details['photos'].first['photo_reference']
+        #   photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV["GOOGLE_API"]}"
+        #   puts photo_url
+        # end
       end
 
       @place = Place.find_by(google_place_id: place_id)
