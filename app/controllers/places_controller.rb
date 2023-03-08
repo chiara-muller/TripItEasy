@@ -3,11 +3,23 @@ require "net/http"
 
 class PlacesController < ApplicationController
   def search
-    query = params[:query]
+    # query = params[:query]
+    # address = params[:address]
     latitude = params[:latitude]
     longitude = params[:longitude]
-    if query
-      url = URI("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{query}&location=#{latitude}%2C#{longitude}&radius=1000&key=#{ENV["GOOGLE_API"]}")
+    type = params[:type]
+    radius = params[:radius]
+    minprice = params[:minprice]
+
+    # url = URI("https://maps.googleapis.com/maps/api/geocode/json?address=#{address}&key=#{ENV["GOOGLE_API"]}}")
+    # response = Net::HTTP.get(url)
+    # result = JSON.parse(response)
+
+    # lat = result["results"][0]["geometry"]["location"]["lat"]
+    # lng = result["results"][0]["geometry"]["location"]["lng"]
+
+    if type
+      url = URI("https://maps.googleapis.com/maps/api/place/textsearch/json?location=#{latitude}%2C#{longitude}&radius=#{radius}&type=#{type}&opennow=true&minprice=#{minprice}&key=#{ENV["GOOGLE_API"]}")
 
       https = Net::HTTP.new(url.host, url.port)
       https.use_ssl = true
@@ -17,15 +29,9 @@ class PlacesController < ApplicationController
       response = https.request(request)
       puts response.read_body
 
-      # @place = Place.create(name: response.results.name,
-      #                       address: response.results.formatted_address,
-      #                       photos: response.results.photos,
-      #                       latitude: response.geometry.location.lat,
-      #                       longitude: response.geometry.location.lng,
-      #                       google_place_id: response.place_id)
-
       response_hash = JSON.parse(response.read_body)
       results = response_hash['results']
+
       if results.any?
         first_result = results.sample
         place_id = first_result['place_id']
@@ -33,8 +39,19 @@ class PlacesController < ApplicationController
         address = first_result['formatted_address']
         photos = first_result['photos'].map { |photo| photo['photo_reference']}
         coordinates = first_result['geometry']['location']
+        url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=photo&key=#{ENV["GOOGLE_API"]}"
+        uri = URI(url)
+        response = Net::HTTP.get(uri)
+        details = JSON.parse(response)['result']
+        if details['photos']
+          photo_reference = details['photos'].first['photo_reference']
+          photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV["GOOGLE_API"]}"
+          puts photo_url
+        end
       end
+
       @place = Place.find_by(google_place_id: place_id)
+
       if @place.nil?
         @place = Place.create(name: name, google_place_id: place_id, address: address, photos: photos, latitude: coordinates['lat'], longitude:coordinates['lng'])
       end
