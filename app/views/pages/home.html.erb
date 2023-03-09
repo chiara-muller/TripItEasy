@@ -1,3 +1,4 @@
+
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
@@ -15,3 +16,38 @@
   <%= form.range_field :minprice, in: 0..4 %>
   <%= form.submit %>
 <% end %>
+
+<div class="container">
+      <div class="col-8 col-lg-3">
+        <%= form_with url: :root, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a place"
+          %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+  <div class='range'>
+  <p>Maximum Distance</p>
+      <input type="range" min='0' max='20' step='2' />
+      <span>10</span>
+    </div>
+  <p> </p>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+    integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+    crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+      $(function(){
+
+      $('.range input').on('mousemove', function(){
+        var getValRange = $(this).val();
+        $('.range span').text(getValRange + 'km');
+      });
+      });
+    </script>

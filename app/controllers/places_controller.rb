@@ -2,6 +2,7 @@ require "uri"
 require "net/http"
 
 class PlacesController < ApplicationController
+
   def search
     # query = params[:query]
     # address = params[:address]
