@@ -1,2 +1,8 @@
 <h1>Places#show</h1>
 <p>Find me in app/views/places/show.html.erb</p>
+
+<%= @place.name %>
+<%= @place.address %>
+<% @place.photos.each do |photo_ref| %>
+<%= image_tag place_photo_path(photo_ref) %>
+<% end %>
