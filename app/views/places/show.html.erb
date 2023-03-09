@@ -1,36 +1,17 @@
 <div class="container all-show">
-  <div class= "bookmark-div">
-    <% if !current_user %>
-      <%= form_with(model: [@place, Bookmark.new], url: place_bookmarks_path(@place), method: :post, local: true) do |f| %>
-        <button type="submit" class="btn btn-primary">
-          <i class="fas fa-bookmark"></i>
-        </button>
-      <% end %>
-    <% else %>
-      <% @bookmark = @place.bookmarks.find_by(user_id: current_user.id) %>
-      <% if @bookmark %>
-        <%= form_with(model: [@place, @bookmark], url: place_bookmark_path(@place, @bookmark), method: :delete, local: true) do |f| %>
-          <button type="submit" class="btn btn-success">
-            <i class="fas fa-bookmark"></i>
-          </button>
-        <% end %>
-      <% else %>
-        <%= form_with(model: [@place, Bookmark.new], url: place_bookmarks_path(@place), method: :post, local: true) do |f| %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <button type="submit" class="btn btn-primary">
-            <i class="fas fa-bookmark"></i>
-          </button>
-        <% end %>
-      <% end %>
+  <div class="bookmark-div">
+    <%= link_to new_place_bookmark_path(@place), class: "bookmark" do %>
+      <i class="fa fa-bookmark"></i>
     <% end %>
   </div>
 
+
   <div>
-    <h2><strong><%= "PLACE NAME"  %></strong></h2>
+    <h2><strong><%= @place.name  %></strong></h2>
   </div>
 
   <div>
-    <h5><%= "285 Brunswick St, Fitzroy VIC 3065" %></h5>
+    <h5><%= @place.address %></h5>
   </div>
 
   <div>
@@ -38,17 +19,25 @@
   </div>
 
   <div>
-    <p><%= " * * * * *" %></p>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
   </div>
 
   <div class="photo" >
     <div class="square">
-      <img class="squarePhoto" src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png" alt="photo">
-      <img class="squarePhoto" src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png" alt="photo">
+      <% @place.photos.each do |photo_ref| %>
+        <%= image_tag place_photo_path(photo_ref), class: "squarePhoto" %>
+        <%= image_tag place_photo_path(photo_ref), class: "squarePhoto" %>
+      <% end %>
     </div>
 
     <div class="reqtangle">
-      <img class="reqtanglePhoto" src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png" alt="">
+    <% @place.photos.each do |photo_ref| %>
+        <%= image_tag place_photo_path(photo_ref), class: "reqtanglePhoto" %>
+      <% end %>
     </div>
   </div>
 
@@ -57,12 +46,3 @@
   <%= link_to "Randomise Again", place_path, class: "bottom-buttons" %>
   </div>
 </div>
-
-<h1>Places#show</h1>
-<p>Find me in app/views/places/show.html.erb</p>
-
-<%= @place.name %>
-<%= @place.address %>
-<% @place.photos.each do |photo_ref| %>
-<%= image_tag place_photo_path(photo_ref) %>
-<% end %>

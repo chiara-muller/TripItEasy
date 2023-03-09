@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_045828) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_011718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,18 +18,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_045828) do
     t.bigint "place_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.bigint "list_id", null: false
+    t.index ["list_id"], name: "index_bookmarks_on_list_id"
     t.index ["place_id"], name: "index_bookmarks_on_place_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "lists", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id", null: false
-    t.bigint "bookmark_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bookmark_id"], name: "index_lists_on_bookmark_id"
     t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
@@ -57,8 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_045828) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookmarks", "lists"
   add_foreign_key "bookmarks", "places"
-  add_foreign_key "bookmarks", "users"
-  add_foreign_key "lists", "bookmarks"
   add_foreign_key "lists", "users"
 end
