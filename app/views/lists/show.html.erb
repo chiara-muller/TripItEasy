@@ -1,0 +1,10 @@
+<div class= "bookmark-header" data-controller="new-list">
+  <h1><%= @list.name %></h1>
+  </div>
+<div class="list-div">
+  <% @list.bookmarks.each do |bookmark|  %>
+    <%= link_to bookmark.place.name, place_path(bookmark.place), class: "List" %>
+  <% end %>
+</div>
+
+<%# create a new list with simple form%>

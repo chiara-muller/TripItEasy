@@ -1,9 +1,51 @@
-<h1>Places#show</h1>
-<p>Find me in app/views/places/show.html.erb</p>
+<div class="container all-show">
+  <div class="bookmark-div">
+    <%= link_to new_place_bookmark_path(@place), class: "bookmark" do %>
+      <i class="fa fa-bookmark"></i>
+    <% end %>
+  </div>
 
-<%= @place.name %>
-<%= @place.address %>
-<%= @place.ratings %>
-<% @place.photos.first(5).each do |photo_ref| %>
-  <%= image_tag place_photo_path(photo_ref) %>
-<% end %>
+
+  <div>
+    <h2><strong><%= @place.name  %></strong></h2>
+  </div>
+
+  <div>
+    <h5><%= @place.address %></h5>
+  </div>
+
+  <div>
+    <p><%= @place.ratings %>
+      <% @place.photos.first(5).each do |photo_ref| %>
+        <%= image_tag place_photo_path(photo_ref) %>
+      <% end %></p>
+  </div>
+  
+  <div>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+  </div>
+
+  <div class="photo" >
+    <div class="square">
+      <% @place.photos.each do |photo_ref| %>
+        <%= image_tag place_photo_path(photo_ref), class: "squarePhoto" %>
+        <%= image_tag place_photo_path(photo_ref), class: "squarePhoto" %>
+      <% end %>
+    </div>
+
+    <div class="reqtangle">
+    <% @place.photos.each do |photo_ref| %>
+        <%= image_tag place_photo_path(photo_ref), class: "reqtanglePhoto" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="bottom-buttons-div">
+  <a class= "bottom-buttons" href="www.google.com">Open in maps</a>
+  <%= link_to "Randomise Again", place_path, class: "bottom-buttons" %>
+  </div>
+</div>

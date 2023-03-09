@@ -1,2 +1,162 @@
 // Import page-specific CSS files here.
 @import "home";
+
+body {
+  background: #C17F8B;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  background: #9D6C82;
+  margin: 0px, 90px;
+  width: 330;
+}
+
+body.home {
+  background: gray;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.custom-checkbox {
+  margin-top: 10px;
+}
+
+.photo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  display: flex;
+  flex-direction: column;
+}
+
+.squarePhoto {
+  width: 120px;
+  height: 120px;
+  margin: 7px;
+}
+
+.reqtanglePhoto {
+  width: 120px;
+  height: 254px;
+  margin: 7px;
+}
+
+.bottom-buttons {
+  margin: 7px;
+  text-decoration: none;
+  padding: 3px 10px;
+  background-color: #C17F8B;
+  border-radius: 5px;
+  color: white;
+  width: 119px;
+  font-size: 11px;
+  text-align: center;
+}
+
+.bottom-buttons-div {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.all-show {
+  margin-top: 20px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+.bookmark-div {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.bookmark {
+  margin-top: 5px;
+  color: white;
+  font-size: 20px;
+}
+
+p {
+  font-size: 13px;
+  color: rgb(201, 201, 201);
+}
+
+
+.List {
+  border-bottom: 1px solid #9D6C82;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 90%;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.list-div {
+  background-color: #C17F8B;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.bookmark-header {
+  background-color: #C17F8B;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .05);
+}
+
+.bookmark-form {
+  margin-left: 20px;
+}
+
+.bookmark-form-submit {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  text-decoration: none;
+  padding: 10px;
+  background-color: #9D6C82;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.list_name {
+  background-color: #C17F8B;
+}
+
+.bookmark-form-input {
+  width: 95%;
+}
