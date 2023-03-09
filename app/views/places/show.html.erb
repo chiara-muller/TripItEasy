@@ -15,9 +15,12 @@
   </div>
 
   <div>
-    <p><%= "Tapas-style plates and infused vodka served in swanky digs with a rooftop bar and antique still." %></p>
+    <p><%= @place.ratings %>
+      <% @place.photos.first(5).each do |photo_ref| %>
+        <%= image_tag place_photo_path(photo_ref) %>
+      <% end %></p>
   </div>
-
+  
   <div>
     <i class="fa fa-star"></i>
     <i class="fa fa-star"></i>
