@@ -1,52 +1,74 @@
-
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<%= form_with url: places_search_path, method: :get do |form| %>
-  <%# <%= form.text_area :query %>
-  <div data-controller='autocomplete' data-autocomplete-api-key-value= "<%= ENV['GOOGLE_API'] %>" >
-    <%= form.search_field :address, data: {autocomplete_target: 'search'} %>
-    <div class="d-none">
-      <%= form.text_area :latitude, data: { autocomplete_target: 'lat'} %>
-      <%= form.text_area :longitude, data: { autocomplete_target: 'lng'} %>
-    </div>
-  </div>
-  <%= form.text_area :type %>
-  <%= form.number_field :radius %>
-  <%= form.range_field :minprice, in: 0..4 %>
-  <%= form.submit %>
-<% end %>
-
+<h1 class="title">Explorer</h1>
 <div class="container">
-      <div class="col-8 col-lg-3">
-        <%= form_with url: :root, method: :get, class: "d-flex" do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Find a place"
-          %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
-        <% end %>
+  <div class="row">
+    <%= form_with url: places_search_path, method: :get do |form| %>
+      <div class="container">
+        <div data-controller='autocomplete' data-autocomplete-api-key-value= "<%= ENV['GOOGLE_API'] %>" >
+          <%= form.search_field :address, placeholder: 'Type specific location', data: {autocomplete_target: 'search'} %>
+            <div class="d-none">
+              <%= form.text_area :latitude, data: { autocomplete_target: 'lat'} %>
+              <%= form.text_area :longitude, data: { autocomplete_target: 'lng'} %>
+            </div>
+        </div>
       </div>
 
-  <div class='range'>
-  <p>Maximum Distance</p>
-      <input type="range" min='0' max='20' step='2' />
-      <span>10</span>
-    </div>
-  <p> </p>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-    integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-    crossorigin="anonymous"></script>
+      <div class="row">
+          <%= form.text_area :type, placeholder: '"bar", "restaurant", "art museum", etc' %>
+      </div>
 
-    <script type="text/javascript">
+      <div class="row">
+          <%= form.number_field :radius, placeholder: 'Distance in meters' %>
+      </div>
 
-      $(function(){
+      <div class="row">Price range
+          <%= form.range_field :minprice, in: 0..4 %>
+      </div>
 
-      $('.range input').on('mousemove', function(){
-        var getValRange = $(this).val();
-        $('.range span').text(getValRange + 'km');
-      });
-      });
-    </script>
+      <%# <div class="row">
+        <div class="container">
+          <div class='range'>
+            <p style="text-align: center">Maximum Distance</p>
+              <input type="range" min='0' max='20' step='2' />
+              <span>10</span> %>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+              $(function(){
+              $('.range input').on('mousemove', function(){
+                var getValRange = $(this).val();
+                $('.range span').text(getValRange + 'km');
+              });
+              });
+            </script>
+          </div>
+        </div>
+      </div> %>
+
+      <div class="row">
+        <div class="container">
+            <a class="btn-rounded" href="#">$</a>
+            <a class="btn-rounded" href="#">$$</a>
+            <a class="btn-rounded" href="#">$$$</a>
+            <a class="btn-rounded" href="#">$$$$</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="container">
+          <p class="randomise-text">Randomise</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="randomise-button-container">
+            <%= button_tag type: "submit", class: 'randomise-button' do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8" style="padding: 10px">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
