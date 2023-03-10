@@ -1,10 +1,7 @@
-<%# <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p> %>
 <h1 class="title">Explorer</h1>
 <div class="container">
   <div class="row">
     <%= form_with url: places_search_path, method: :get do |form| %>
-      <%# <%= form.text_area :query %>
       <div class="container">
         <div data-controller='autocomplete' data-autocomplete-api-key-value= "<%= ENV['GOOGLE_API'] %>" >
           <%= form.search_field :address, placeholder: 'Type specific location', data: {autocomplete_target: 'search'} %>
@@ -35,14 +32,8 @@
               <span>10</span> %>
 
             <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-            <%# <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-            crossorigin="anonymous"></script>
-
-            <script type="text/javascript">
 
               $(function(){
-
               $('.range input').on('mousemove', function(){
                 var getValRange = $(this).val();
                 $('.range span').text(getValRange + 'km');
@@ -80,3 +71,4 @@
     <% end %>
   </div>
 </div>
+
