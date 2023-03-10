@@ -31,18 +31,17 @@
               <input type="range" min='0' max='20' step='2' />
               <span>10</span> %>
 
-            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
+            <script src="https://code.jquery.com/jquery-3.5.1.js">
               $(function(){
-              $('.range input').on('mousemove', function(){
-                var getValRange = $(this).val();
-                $('.range span').text(getValRange + 'km');
-              });
+                $('.range input').on('mousemove', function(){
+                  var getValRange = $(this).val();
+                  $('.range span').text(getValRange + 'km');
+                });
               });
             </script>
           </div>
         </div>
-      </div> %>
+      </div>
 
       <div class="row">
         <div class="container">
@@ -71,4 +70,3 @@
     <% end %>
   </div>
 </div>
-
