@@ -11,10 +11,28 @@
 
 <% @lists.each do |list| %>
   <%# link to each list show page %>
-  <h2><%= link_to list.name, list_path(list), class: "List" %></h2>
-<% end %>
+  <div class="list-card">
+    <%= link_to list.name, list_path(list), class: "List" %>
+    <%= link_to list_path(list.id), data: {turbo_method: :delete, turbo_confirm: "are you sure you want to delete #{list.name}?"} do %>
+        <i class="fas fa-trash-alt bookmark"></i>
+        <% end %>
+    </div>
+  <% end %>
 
-<%=  link_to "go back", place_path(1), class: "List" %>
+<div>
+  <div class="row">
+    <div class="col bottom-div">
+          <%= link_to bookmarks_path, class: "bookmark bottom-links-bookmark" do %>
+        <i class="fa fa-bookmark"></i>
+      <% end %>
+    </div>
+
+    <div class="col bottom-div">
+      <%= link_to raw('<i class="fa fa-home"></i>'), root_path, class: "bookmark bottom-links" %>
+    </div>
+  </div>
+</div>
+
 
 
 

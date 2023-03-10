@@ -10,7 +10,16 @@ class ListsController < ApplicationController
     if @list.save
       redirect_back fallback_location: list_path(@list), notice: "List created successfully"
     else
-      redirect_back fallback_location: list_path(@list), alert: "Error creating list"
+      redirect_back fallback_location: bookmarks_path, alert: "List name is required"
+    end
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    if @list.user == current_user && @list.destroy
+      redirect_to bookmarks_path, notice: "List removed successfully"
+    else
+      redirect_to bookmarks_path, alert: "Error removing list"
     end
   end
 
