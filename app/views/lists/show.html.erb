@@ -1,9 +1,15 @@
-<div class= "bookmark-header" data-controller="new-list">
-  <h1><%= @list.name %></h1>
+<div class= "bookmark-header parent" data-controller="new-list">
+  <%= link_to "Go back", bookmarks_path, class: "bookmark-form-submit child-left" %>
+  <h1 class = "child-middle"><%= @list.name%></h1>
   </div>
 <div class="list-div">
   <% @list.bookmarks.each do |bookmark|  %>
-    <%= link_to bookmark.place.name, place_path(bookmark.place), class: "List" %>
+    <div class="list-card">
+      <%= link_to bookmark.place.name, place_path(bookmark.place), class: "List" %>
+      <%= link_to bookmark_path(bookmark.id), data: {turbo_method: :delete, turbo_confirm: "are you sure you want to delete this bookmark?"} do %>
+        <i class="fas fa-trash-alt bookmark"></i>
+      <% end %>
+    </div>
   <% end %>
 </div>
 

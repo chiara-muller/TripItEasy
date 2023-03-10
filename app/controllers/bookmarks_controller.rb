@@ -24,13 +24,13 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    @place = Place.find(params[:place_id])
     @bookmark = Bookmark.find(params[:id])
-
-    if @bookmark.user == current_user && @bookmark.destroy
-      redirect_to @place, notice: "Bookmark removed successfully"
+    @place = @bookmark.place
+    @list = @bookmark.list
+    if @bookmark.destroy
+      redirect_to lists_path(@list), notice: "Bookmark removed successfully"
     else
-      redirect_to @place, alert: "Error removing bookmark"
+      redirect_to lists_path(@list), alert: "Error removing bookmark"
     end
   end
 
