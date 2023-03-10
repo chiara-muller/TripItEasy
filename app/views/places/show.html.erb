@@ -15,12 +15,13 @@
   </div>
 
   <div>
-    <p><%= @place.ratings %>
+    <p><%= @place.ratings %></p>
+    <p><%= @place.total_ratings %></p>
       <% @place.photos.first(5).each do |photo_ref| %>
         <%= image_tag place_photo_path(photo_ref) %>
-      <% end %></p>
+      <% end %>
   </div>
-  
+
   <div>
     <i class="fa fa-star"></i>
     <i class="fa fa-star"></i>
