@@ -13,7 +13,7 @@
 
 @import 'components/buttons';
 
-body.home {
+body {
   background: #C17F8B !important;
   color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -21,10 +21,4 @@ body.home {
 
 .custom-checkbox {
   margin-top: 10px;
-}
-
-.body {
-  background: #C17F8B !important;
-  color: white;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
