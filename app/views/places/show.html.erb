@@ -16,8 +16,8 @@
 
   <div>
     <h5>Rating:</h5>
-    <p><%= @place.ratings %></p>
-    <p><%= @place.total_ratings %></p>
+    <p><%= @place.ratings %> <%= @place.total_ratings %> Reviews</p>
+    <p></p>
   </div>
 
   <div>
@@ -28,12 +28,33 @@
     <i class="fa fa-star"></i>
   </div>
 
-  <div class="photo" >
-    <div class="square">
-      <% @place.photos.first(5).each do |photo_ref| %>
-        <%= image_tag place_photo_path(photo_ref), class: "squarePhoto" %>
-      <% end %>
+  <div class = "carosal">
+  <input type="radio" name="position" class="circle" checked/>
+  <input type="radio" name="position" class="circle" />
+  <input type="radio" name="position" class="circle" />
+  <input type="radio" name="position" class="circle" />
+  <input type="radio" name="position" class="circle" />
+  <main id="carousel">
+      <button id="prev-button">Prev</button>
+    <div class="item">
+    <%= image_tag place_photo_path(@place.photos[1]), class: "photo-caro"%>
     </div>
+      <div class="item">
+    <%= image_tag place_photo_path(@place.photos[2]), class: "photo-caro"%>
+    </div>
+      <div class="item">
+    <%= image_tag place_photo_path(@place.photos[3]), class: "photo-caro"%>
+    </div>
+      <div class="item">
+    <%= image_tag place_photo_path(@place.photos[4]), class: "photo-caro"%>
+    </div>
+      <div class="item">
+    <%= image_tag place_photo_path(@place.photos[5]), class: "photo-caro"%>
+    </div>
+        <button id="next-button">Next</button>
+    <main>
+ </div>
+
 
     <%# <div class="reqtangle">
     <% @place.photos.each do |photo_ref| %>
@@ -49,7 +70,6 @@
   </div>
 </div>
 
-
 <div class="container bottom-div-all">
   <div class="row">
     <div class="col bottom-div">
@@ -63,3 +83,34 @@
     </div>
   </div>
 </div>
+
+<script>
+const prevButton = document.querySelector('#prev-button');
+const nextButton = document.querySelector('#next-button');
+const radioButtons = document.querySelectorAll('.carosal input[type="radio"]');
+
+let checkedIndex = 0;
+
+// Find the initially checked radio button index
+radioButtons.forEach((radioButton, index) => {
+  if (radioButton.checked) {
+    checkedIndex = index;
+  }
+});
+
+// Handle the previous button click
+prevButton.addEventListener('click', () => {
+  if (checkedIndex > 0) {
+    radioButtons[checkedIndex - 1].checked = true;
+    checkedIndex--;
+  }
+});
+
+// Handle the next button click
+nextButton.addEventListener('click', () => {
+  if (checkedIndex < radioButtons.length - 1) {
+    radioButtons[checkedIndex + 1].checked = true;
+    checkedIndex++;
+  }
+});
+</script>
