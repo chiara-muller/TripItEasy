@@ -49,14 +49,11 @@ class PlacesController < ApplicationController
         #   photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV["GOOGLE_API"]}"
         #   puts photo_url
         # end
-      end
-
-      @place = Place.find_by(google_place_id: place_id)
-
-      if @place.nil?
         @place = Place.create(name: name, google_place_id: place_id, address: address, photos: photos, latitude: coordinates['lat'], longitude:coordinates['lng'])
+        redirect_to place_path(@place)
+      else
+        redirect_to root_path
       end
-      redirect_to @place
     end
   end
 
