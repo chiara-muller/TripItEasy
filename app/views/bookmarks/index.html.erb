@@ -1,0 +1,60 @@
+<div class= "bookmark-header" data-controller="new-list">
+<h1>Bookmarks list</h1>
+</div>
+<!-- Add this to your HTML -->
+
+<%= simple_form_for @list, html: { class: "bookmark-form" } do |f| %>
+  <%= f.input :name, input_html: { class: 'bookmark-form-input' }, placeholder: "List Name..." %>
+  <%= f.submit "Create New List", class: "bookmark-form-submit" %>
+<% end %>
+
+
+<% @lists.each do |list| %>
+  <%# link to each list show page %>
+  <div class="list-card">
+    <%= link_to list.name, list_path(list), class: "List" %>
+    <%= link_to list_path(list.id), data: {turbo_method: :delete, turbo_confirm: "are you sure you want to delete #{list.name}?"} do %>
+        <i class="fas fa-trash-alt bookmark"></i>
+        <% end %>
+    </div>
+  <% end %>
+
+<div>
+  <div class="row">
+    <div class="col bottom-div">
+          <%= link_to bookmarks_path, class: "bookmark bottom-links-bookmark" do %>
+        <i class="fa fa-bookmark"></i>
+      <% end %>
+    </div>
+
+    <div class="col bottom-div">
+      <%= link_to raw('<i class="fa fa-home"></i>'), root_path, class: "bookmark bottom-links" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<%# <div class="list-card" data-controller="new-list" data-new-list-target="card">
+
+  <%# <div class="list-infos <%= 'd-none' if @list.errors.any? " data-new-list-target="infos">  %>
+    <%# <button aria-label="new list">
+      <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->new-list#displayForm"></i>
+    </button>
+  </div>
+
+  <%= simple_form_for @list,
+    html: {
+      class: @list.errors.any? ? "" : "d-none",
+      data: {
+        new_list_target: "form",
+        action: "submit->new-list#create"
+      }
+    } do |f|
+  %>
+    <%# <%= f.submit "create list", class: "btn btn-sm btn-primary btn-block mt-2" %>
+  <%# <% end %>
+<%# </div> %>

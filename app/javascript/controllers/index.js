@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import LocatorController from "./locator_controller"
 application.register("locator", LocatorController)
+
+import NewListController from "./new_list_controller"
+application.register("new-list", NewListController)

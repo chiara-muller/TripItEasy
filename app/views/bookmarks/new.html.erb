@@ -1,0 +1,30 @@
+<div class= "bookmark-header">
+  <h1>Save Bookmark</h1>
+</div>
+
+<%= turbo_frame_tag dom_id(@place, :new_list) do  %>
+  <%= simple_form_for @list, html: { class: "bookmark-form"} do |f| %>
+    <%= f.input :name, input_html: { class: 'bookmark-form-input' }, placeholder: "List Name..." %>
+    <%= f.submit "Create New List", class: "bookmark-form-submit" %>
+  <% end %>
+
+  <div class="list-div">
+    <% @lists.each do |list| %>
+      <%= link_to list.name, place_bookmarks_path(@place, bookmark: {list_id: list.id}), data: {turbo_method: :post, turbo_frame: "_top"}, class: "List" %> <br>
+    <% end %>
+  </div>
+<% end %>
+
+<div>
+  <div class="row">
+    <div class="col bottom-div">
+          <%= link_to bookmarks_path, class: "bookmark bottom-links" do %>
+        <i class="fa fa-bookmark"></i>
+      <% end %>
+    </div>
+
+    <div class="col bottom-div">
+      <%= link_to raw('<i class="fa fa-home"></i>'), root_path, class: "bookmark bottom-links" %>
+    </div>
+  </div>
+</div>
