@@ -11,7 +11,7 @@ class PlacesController < ApplicationController
     minprice = params[:minprice]
 
     if type
-      url = URI("https://maps.googleapis.com/maps/api/place/textsearch/json?location=#{latitude}%2C#{longitude}&radius=#{radius}&type=#{type}&opennow=true&minprice=#{minprice}&key=#{ENV["GOOGLE_API"]}")
+      url = URI("https://maps.googleapis.com/maps/api/place/textsearch/json?location=#{latitude}%2C#{longitude}&radius=#{radius}&type=#{type}&opennow=true&key=#{ENV["GOOGLE_API"]}")
 
       https = Net::HTTP.new(url.host, url.port)
       https.use_ssl = true
@@ -24,7 +24,7 @@ class PlacesController < ApplicationController
       response_hash = JSON.parse(response.read_body)
       results = response_hash['results']
 
-      if results.any?
+      if results.any? || (minprice == first_result['price_level'] || first_result['price_level'].nil?)
         first_result = results.sample
         place_id = first_result['place_id']
         name = first_result['name']
@@ -50,7 +50,9 @@ class PlacesController < ApplicationController
           photo_reference = photo['photo_reference']
           photos << photo_reference
         end
-        @place = Place.create(name: name, google_place_id: place_id, address: address, photos: photos, latitude: coordinates['lat'], longitude: coordinates['lng'], ratings: ratings)
+        total_ratings = result['user_ratings_total']
+
+        @place = Place.create(name: name, google_place_id: place_id, address: address, photos: photos, latitude: coordinates['lat'], longitude: coordinates['lng'], ratings: ratings, total_ratings: total_ratings)
         redirect_to place_path(@place)
       else
         redirect_to root_path
