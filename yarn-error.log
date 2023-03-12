@@ -1,9 +1,16 @@
 Arguments: 
 
+  /Users/reibang/.nvm/versions/node/v16.15.1/bin/node /Users/reibang/.nvm/versions/node/v16.15.1/bin/yarn upgrade
+
+PATH: 
+  ./bin:./node_modules/.bin:/Users/reibang/.nvm/versions/node/v16.15.1/bin:/Users/reibang/.rbenv/shims:/Users/reibang/.rbenv/bin:/Users/reibang/.pyenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
+
+
   /Users/chiaramuller/.nvm/versions/node/v16.15.1/bin/node /Users/chiaramuller/.nvm/versions/node/v16.15.1/bin/yarn
 
 PATH: 
   ./bin:./node_modules/.bin:/Users/chiaramuller/.nvm/versions/node/v16.15.1/bin:/Users/chiaramuller/.rbenv/shims:/Users/chiaramuller/.rbenv/bin:/Users/chiaramuller/.pyenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
+
 
 Yarn version: 
   1.22.19
@@ -15,6 +22,17 @@ Platform:
   darwin x64
 
 Trace: 
+
+  SyntaxError: Unknown token: { line: 421, col: 1, type: 'INVALID', value: undefined } 421:1 in /Users/reibang/code/chiara-muller/eatDrinkVisit/yarn.lock
+      at Parser.unexpected (/Users/reibang/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:63491:11)
+      at Parser.parse (/Users/reibang/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:63622:14)
+      at parse (/Users/reibang/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:63696:21)
+      at module.exports.exports.default (/Users/reibang/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:63258:96)
+      at Function.<anonymous> (/Users/reibang/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:3068:63)
+      at Generator.next (<anonymous>)
+      at step (/Users/reibang/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /Users/reibang/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:321:13
+
   SyntaxError: Unknown token: { line: 421, col: 1, type: 'INVALID', value: undefined } 421:1 in /Users/chiaramuller/code/chiara-muller/eatDrinkVisit/yarn.lock
       at Parser.unexpected (/Users/chiaramuller/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:63491:11)
       at Parser.parse (/Users/chiaramuller/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:63622:14)
@@ -24,6 +42,7 @@ Trace:
       at Generator.next (<anonymous>)
       at step (/Users/chiaramuller/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:310:30)
       at /Users/chiaramuller/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:321:13
+
 
 npm manifest: 
   {

@@ -8,7 +8,7 @@ class PlacesController < ApplicationController
     longitude = params[:longitude]
     type = params[:type]
     radius = params[:radius]
-    minprice = params[:minprice]
+    # maxprice = params[:maxprice]
 
     if type
       url = URI("https://maps.googleapis.com/maps/api/place/textsearch/json?location=#{latitude}%2C#{longitude}&radius=#{radius}&type=#{type}&opennow=true&key=#{ENV["GOOGLE_API"]}")
@@ -24,13 +24,15 @@ class PlacesController < ApplicationController
       response_hash = JSON.parse(response.read_body)
       results = response_hash['results']
 
-      if results.any? || (minprice == first_result['price_level'] || first_result['price_level'].nil?)
+      # (maxprice <= results['price_level'] || !results.include('price_level'))
+      if results.any?
         first_result = results.sample
         place_id = first_result['place_id']
         name = first_result['name']
         address = first_result['formatted_address']
         coordinates = first_result['geometry']['location']
         ratings = first_result['rating']
+        # maps_link = "https://www.google.com/maps/search/?api=1&query=#{coordinates['lat']},#{coordinates['lng']}"
 
         url = URI("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&key=#{ENV['GOOGLE_API']}")
 
