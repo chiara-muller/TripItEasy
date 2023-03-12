@@ -67,6 +67,7 @@
               $
             <% end %>
 
+
             <%= form.radio_button :maxprice, "1", class: "btn-check", id: "maxprice-1", autocomplete: "off" %>
             <%= form.label :maxprice_1, class: "btn btn-rounded", for: "maxprice-1" do %>
               $$
@@ -76,6 +77,9 @@
             <%= form.label :maxprice_2, class: "btn btn-rounded", for: "maxprice-2" do %>
               $$$
             <% end %>
+            
+            <script src="https://code.jquery.com/jquery-3.5.1.js">
+
 
             <%= form.radio_button :maxprice, "3", class: "btn-check", id: "maxprice-3", autocomplete: "off" %>
             <%= form.label :maxprice_3, class: "btn btn-rounded", for: "maxprice-3" do %>
@@ -111,3 +115,4 @@
         id="example">>
   Custom popover
 </button>
+
