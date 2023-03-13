@@ -1,6 +1,7 @@
 // Import page-specific CSS files here.
 @import "home";
 
+
 body {
   background: #C17F8B;
   color: #ffffff;
@@ -10,12 +11,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-// div {
-//   background: #9D6C82;
-//   margin: 0px, 90px;
-//   width: 330;
-// }
 
 body.home {
   background: gray;
