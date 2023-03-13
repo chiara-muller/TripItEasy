@@ -35,27 +35,35 @@
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Select an option
           </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <p>Eat/Drink</p>
-              <li class="dropdown-item">
-                <%= form.radio_button :type, "bar" %>
-                <%= form.label :type_bar, "Bar" %>
-              </li>
-              <li class="dropdown-item">
-                <%= form.radio_button :type, "restaurant" %>
-                <%= form.label :type_restaurant, "Restaurant" %>
-              </li>
-              <li class="dropdown-item">
-                <%= form.radio_button :type, "cafe" %>
-                <%= form.label :type_restaurant, "Cafe" %>
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <p>Visit</p>
-              <li class="dropdown-item">
-                <%= form.radio_button :type, "museum" %>
-                <%= form.label :type_museum, "Museum" %>
-              </li>
-            </ul>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <p>Eat/Drink</p>
+            <li class="dropdown-item">
+              <%= form.radio_button :type, "bar" %>
+              <%= form.label :type_bar, "Bar" %>
+            </li>
+            <li class="dropdown-item">
+              <%= form.radio_button :type, "restaurant" %>
+              <%= form.label :type_restaurant, "Restaurant" %>
+            </li>
+            <li class="dropdown-item">
+              <%= form.radio_button :type, "cafe" %>
+              <%= form.label :type_restaurant, "Cafe" %>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <p>Visit</p>
+            <li class="dropdown-item">
+              <%= form.radio_button :type, "museum" %>
+              <%= form.label :type_museum, "Museum" %>
+            </li>
+            <li class="dropdown-item">
+              <%= form.radio_button :type, "art_gallery" %>
+              <%= form.label :type_museum, "Art Gallery" %>
+            </li>
+            <li class="dropdown-item">
+              <%= form.radio_button :type, "parc" %>
+              <%= form.label :type_museum, "Parc" %>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -97,6 +105,30 @@
         <h5 class="randomise-text">Randomise</h5>
       </div>
 
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="randomise-button-container">
           <%= button_tag type: "submit", class: 'randomise-button' do %>
@@ -108,12 +140,4 @@
       </div>
     </div>
   <% end %>
-  <button type="button" class="btn btn-secondary"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover"
-        data-bs-title="Custom popover"
-        data-bs-content="This popover is themed via CSS variables."
-        id="example">
-  Custom popover
-  </button>
 </div>
