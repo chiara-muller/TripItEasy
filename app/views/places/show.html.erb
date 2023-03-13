@@ -34,7 +34,6 @@
   <input type="radio" name="position" class="circle" />
   <input type="radio" name="position" class="circle" />
   <main id="carousel">
-      <button id="prev-button">Prev</button>
     <div class="item">
     <%= image_tag place_photo_path(@place.photos[1]), class: "photo-caro"%>
     </div>
@@ -50,10 +49,10 @@
       <div class="item">
     <%= image_tag place_photo_path(@place.photos[5]), class: "photo-caro"%>
     </div>
-        <button id="next-button">Next</button>
     <main>
  </div>
-
+       <button id="prev-button">Prev</button>
+        <button id="next-button">Next</button>
 
     <%# <div class="reqtangle">
     <% @place.photos.each do |photo_ref| %>
@@ -72,20 +71,6 @@
   </div>
 </div>
 
-<div class="container bottom-div-all">
-  <div class="row">
-    <div class="col bottom-div">
-          <%= link_to bookmarks_path, class: "bookmark bottom-links" do %>
-        <i class="fa fa-bookmark"></i>
-      <% end %>
-    </div>
-
-    <div class="col bottom-div">
-      <%= link_to raw('<i class="fa fa-home"></i>'), root_path, class: "bookmark bottom-links" %>
-    </div>
-
-  </div>
-</div>
 
 <script>
 const prevButton = document.querySelector('#prev-button');

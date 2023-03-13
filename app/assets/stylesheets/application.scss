@@ -11,14 +11,15 @@
 @import "components/index";
 @import "pages/index";
 @import 'components/buttons';
+@import 'components/revealform';
+@import 'pages/bookmarks';
 
 body {
-  background: #C17F8B !important;
-  color: white;
+  background: #ffffff !important;
+  color: rgb(0, 0, 0);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .custom-checkbox {
   margin-top: 10px;
 }
-

@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
-
   def show
     @list = List.find(params[:id])
+    @bookmark = Bookmark.new
   end
 
   def create
@@ -20,6 +20,19 @@ class ListsController < ApplicationController
       redirect_to bookmarks_path, notice: "List removed successfully"
     else
       redirect_to bookmarks_path, alert: "Error removing list"
+    end
+  end
+
+  def edit
+    @list = List.find(params[:id])
+  end
+
+  def update
+    @list = List.find(params[:id])
+    if @list.user == current_user && @list.update(list_params)
+      redirect_to list_path(@list), notice: "List updated successfully"
+    else
+      redirect_to list_path(@list), alert: "Error updating list"
     end
   end
 

@@ -7,10 +7,12 @@
     <div class="list-card">
       <%= link_to bookmark.place.name, place_path(bookmark.place), class: "List" %>
       <%= link_to bookmark_path(bookmark.id), data: {turbo_method: :delete, turbo_confirm: "are you sure you want to delete this bookmark?"} do %>
-        <i class="fas fa-trash-alt bookmark"></i>
+        <i class="fas fa-trash-alt bookmark trash"></i>
+      <% end %>
+      <%# link_to bookmarks/edit %>
+      <%= link_to edit_bookmark_path(bookmark.id) do %>
+        <i class="fas fa-edit bookmark edit"></i>
       <% end %>
     </div>
   <% end %>
 </div>
-
-<%# create a new list with simple form%>

@@ -1,46 +1,35 @@
-<div class= "bookmark-header" data-controller="new-list">
-<h1>Bookmarks list</h1>
-</div>
-<!-- Add this to your HTML -->
-
-<%= simple_form_for @list, html: { class: "bookmark-form" } do |f| %>
-  <%= f.input :name, input_html: { class: 'bookmark-form-input' }, placeholder: "List Name..." %>
-  <%= f.submit "Create New List", class: "bookmark-form-submit" %>
-<% end %>
-
-
-<% @lists.each do |list| %>
-  <%# link to each list show page %>
-  <div class="list-card">
-    <%= link_to list.name, list_path(list), class: "List" %>
-    <%= link_to list_path(list.id), data: {turbo_method: :delete, turbo_confirm: "are you sure you want to delete #{list.name}?"} do %>
-        <i class="fas fa-trash-alt bookmark"></i>
-        <% end %>
+<div class="bookmark-body">
+  <div class= "bookmark-header" data-controller="new-list">
+    <h1 class= nav-title-bookmarks>Bookmarks list</h1>
+    <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i> New List</button>
+  </div>
+  <% @lists.each do |list| %>
+    <div class="list-card">
+      <%= link_to list.name, list_path(list), class: "List" %>
+      <%= link_to list_path(list.id), data: {turbo_method: :delete, turbo_confirm: "are you sure you want to delete #{list.name}?"} do %>
+          <i class="fas fa-trash-alt bookmark trash"></i>
+          <% end %>
+      <%= link_to edit_list_path(list.id) do %>
+        <i class="fas fa-edit bookmark edit"></i>
+      <% end %>
     </div>
   <% end %>
+</div>
 
+<div class="form-popup" id="myForm">
+  <%= simple_form_for @list, html: { class: "bookmark-form-index" } do |f| %>
+    <%= f.input :name, input_html: { class: 'bookmark-form-input-index' }, placeholder: "List Name..." %>
+    <%= f.submit "Done", class: "bookmark-form-submit-index" %>
+  <% end %>
+  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+</div>
 
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
 
-
-
-
-<%# <div class="list-card" data-controller="new-list" data-new-list-target="card">
-
-  <%# <div class="list-infos <%= 'd-none' if @list.errors.any? " data-new-list-target="infos">  %>
-    <%# <button aria-label="new list">
-      <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->new-list#displayForm"></i>
-    </button>
-  </div>
-
-  <%= simple_form_for @list,
-    html: {
-      class: @list.errors.any? ? "" : "d-none",
-      data: {
-        new_list_target: "form",
-        action: "submit->new-list#create"
-      }
-    } do |f|
-  %>
-    <%# <%= f.submit "create list", class: "btn btn-sm btn-primary btn-block mt-2" %>
-  <%# <% end %>
-<%# </div> %>
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>

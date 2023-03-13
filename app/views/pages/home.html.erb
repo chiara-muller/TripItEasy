@@ -1,118 +1,122 @@
 <h1 class="title">Trip it easy</h1>
-<div class="container">
-  <%= form_with url: places_search_path, method: :get do |form| %>
-    <div class="row height d-flex justify-content-center align-items-center">
-      <div class ="row" data-controller='autocomplete' data-autocomplete-api-key-value= "<%= ENV['GOOGLE_API'] %>" >
-        <div class="form">
-          <i class="fa fa-search"></i>
-          <%= form.search_field :address, placeholder: 'Type specific location', class:'form-control form-input', data: {autocomplete_target: 'search'} %>
-          <span class="left-pan"><i class="fa fa-microphone"></i></span>
+<div class="all-items-home">
+  <div class="container">
+    <%= form_with url: places_search_path, method: :get do |form| %>
+      <div class="row height d-flex justify-content-center align-items-center">
+        <div class ="row" data-controller='autocomplete' data-autocomplete-api-key-value= "<%= ENV['GOOGLE_API'] %>" >
+          <div class="form">
+            <i class="fa fa-search"></i>
+            <%= form.search_field :address, placeholder: 'Type specific location', class:'form-control form-input', data: {autocomplete_target: 'search'} %>
+            <span class="left-pan"><i class="fa fa-microphone"></i></span>
+          </div>
+          <div class="d-none">
+            <%= form.text_area :latitude, data: { autocomplete_target: 'lat'} %>
+            <%= form.text_area :longitude, data: { autocomplete_target: 'lng'} %>
+          </div>
         </div>
-        <div class="d-none">
-          <%= form.text_area :latitude, data: { autocomplete_target: 'lat'} %>
-          <%= form.text_area :longitude, data: { autocomplete_target: 'lng'} %>
-        </div>
-      </div>
 
-      <div class="row">
-        <h5>Distance in meters</h5>
-        <%= form.range_field :radius, in: 0..3000, id: 'radius-input' %>
-        <p id="radius-value"></p>
-        <script>
-          var radiusInput = document.getElementById('radius-input');
-          var radiusValue = document.getElementById('radius-value');
-          radiusInput.addEventListener('input', function() {
-            radiusValue.innerText = this.value + ' meters';
-          });
+        <div class="row">
+          <h5>Distance in meters</h5>
+          <%= form.range_field :radius, in: 0..3000, id: 'radius-input' %>
+          <p id="radius-value"></p>
+          <script>
+            var radiusInput = document.getElementById('radius-input');
+            var radiusValue = document.getElementById('radius-value');
+            radiusInput.addEventListener('input', function() {
+              radiusValue.innerText = this.value + ' meters';
+            });
+          </script>
+        </div>
+
+        <div class="row" style="z-index:100">
+          <h5>Select an activity</h5>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Select an option
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <p>Eat/Drink</p>
+              <li class="dropdown-item">
+                <%= form.radio_button :type, "bar" %>
+                <%= form.label :type_bar, "Bar" %>
+              </li>
+              <li class="dropdown-item">
+                <%= form.radio_button :type, "restaurant" %>
+                <%= form.label :type_restaurant, "Restaurant" %>
+              </li>
+              <li class="dropdown-item">
+                <%= form.radio_button :type, "cafe" %>
+                <%= form.label :type_restaurant, "Cafe" %>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <p>Visit</p>
+              <li class="dropdown-item">
+                <%= form.radio_button :type, "museum" %>
+                <%= form.label :type_museum, "Museum" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <div class="row">
+          <div class="container">
+            <div class="btn-group" data-toggle="buttons">
+              <%= form.radio_button :maxprice, "0", class: "btn-check", id: "maxprice-0", autocomplete: "off" %>
+              <%= form.label :maxprice_0, class: "btn btn-rounded", for: "maxprice-0" do %>
+                $
+              <% end %>
+
+
+              <%= form.radio_button :maxprice, "1", class: "btn-check", id: "maxprice-1", autocomplete: "off" %>
+              <%= form.label :maxprice_1, class: "btn btn-rounded", for: "maxprice-1" do %>
+                $$
+              <% end %>
+
+              <%= form.radio_button :maxprice, "2", class: "btn-check", id: "maxprice-2", autocomplete: "off" %>
+              <%= form.label :maxprice_2, class: "btn btn-rounded", for: "maxprice-2" do %>
+                $$$
+              <% end %>
+
+
+
+
+              <%= form.radio_button :maxprice, "3", class: "btn-check", id: "maxprice-3", autocomplete: "off" %>
+              <%= form.label :maxprice_3, class: "btn btn-rounded", for: "maxprice-3" do %>
+                $$$$
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js">
         </script>
-      </div>
 
-      <div class="row" style="z-index:100">
-        <h5>Select an activity</h5>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Select an option
-          </button>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <p>Eat/Drink</p>
-            <li class="dropdown-item">
-              <%= form.radio_button :type, "bar" %>
-              <%= form.label :type_bar, "Bar" %>
-            </li>
-            <li class="dropdown-item">
-              <%= form.radio_button :type, "restaurant" %>
-              <%= form.label :type_restaurant, "Restaurant" %>
-            </li>
-            <li class="dropdown-item">
-              <%= form.radio_button :type, "cafe" %>
-              <%= form.label :type_restaurant, "Cafe" %>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <p>Visit</p>
-            <li class="dropdown-item">
-              <%= form.radio_button :type, "museum" %>
-              <%= form.label :type_museum, "Museum" %>
-            </li>
-          </ul>
+        <div class="row">
+          <h5 class="randomise-text">Randomise</h5>
         </div>
-      </div>
 
-      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-      <div class="row">
-        <div class="container">
-          <div class="btn-group" data-toggle="buttons">
-            <%= form.radio_button :maxprice, "0", class: "btn-check", id: "maxprice-0", autocomplete: "off" %>
-            <%= form.label :maxprice_0, class: "btn btn-rounded", for: "maxprice-0" do %>
-              $
-            <% end %>
-
-
-            <%= form.radio_button :maxprice, "1", class: "btn-check", id: "maxprice-1", autocomplete: "off" %>
-            <%= form.label :maxprice_1, class: "btn btn-rounded", for: "maxprice-1" do %>
-              $$
-            <% end %>
-
-            <%= form.radio_button :maxprice, "2", class: "btn-check", id: "maxprice-2", autocomplete: "off" %>
-            <%= form.label :maxprice_2, class: "btn btn-rounded", for: "maxprice-2" do %>
-              $$$
-            <% end %>
-            
-            <script src="https://code.jquery.com/jquery-3.5.1.js">
-
-
-            <%= form.radio_button :maxprice, "3", class: "btn-check", id: "maxprice-3", autocomplete: "off" %>
-            <%= form.label :maxprice_3, class: "btn btn-rounded", for: "maxprice-3" do %>
-              $$$$
+        <div class="row">
+          <div class="randomise-button-container">
+            <%= button_tag type: "submit", class: 'randomise-button' do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8" style="padding: 10px">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
             <% end %>
           </div>
         </div>
       </div>
+    <% end %>
+  </div>
 
-      <div class="row">
-        <h5 class="randomise-text">Randomise</h5>
-      </div>
 
-      <div class="row">
-        <div class="randomise-button-container">
-          <%= button_tag type: "submit", class: 'randomise-button' do %>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8" style="padding: 10px">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-            </svg>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <button type="button" class="btn btn-secondary"
+          data-bs-toggle="popover" data-bs-placement="right"
+          data-bs-custom-class="custom-popover"
+          data-bs-title="Custom popover"
+          data-bs-content="This popover is themed via CSS variables."
+          id="example">
+    Custom popover
+  </button>
 </div>
-
-
-<button type="button" class="btn btn-secondary"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover"
-        data-bs-title="Custom popover"
-        data-bs-content="This popover is themed via CSS variables."
-        id="example">>
-  Custom popover
-</button>
-
