@@ -15,7 +15,9 @@
       </div>
 
       <div class="row">
-        <h5>Distance in meters</h5>
+        <div class="sub_title">
+          <h5>Distance in meters</h5>
+        </div>
         <%= form.range_field :radius, in: 0..3000, id: 'radius-input' %>
         <p id="radius-value"></p>
         <script>
@@ -27,33 +29,33 @@
         </script>
       </div>
 
-      <div class="row" style="z-index:100">
+      <div class="sub_title" style="z-index:100">
         <h5>Select an activity</h5>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Select an option
           </button>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <p>Eat/Drink</p>
-            <li class="dropdown-item">
-              <%= form.radio_button :type, "bar" %>
-              <%= form.label :type_bar, "Bar" %>
-            </li>
-            <li class="dropdown-item">
-              <%= form.radio_button :type, "restaurant" %>
-              <%= form.label :type_restaurant, "Restaurant" %>
-            </li>
-            <li class="dropdown-item">
-              <%= form.radio_button :type, "cafe" %>
-              <%= form.label :type_restaurant, "Cafe" %>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <p>Visit</p>
-            <li class="dropdown-item">
-              <%= form.radio_button :type, "museum" %>
-              <%= form.label :type_museum, "Museum" %>
-            </li>
-          </ul>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <p>Eat/Drink</p>
+              <li class="dropdown-item">
+                <%= form.radio_button :type, "bar" %>
+                <%= form.label :type_bar, "Bar" %>
+              </li>
+              <li class="dropdown-item">
+                <%= form.radio_button :type, "restaurant" %>
+                <%= form.label :type_restaurant, "Restaurant" %>
+              </li>
+              <li class="dropdown-item">
+                <%= form.radio_button :type, "cafe" %>
+                <%= form.label :type_restaurant, "Cafe" %>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <p>Visit</p>
+              <li class="dropdown-item">
+                <%= form.radio_button :type, "museum" %>
+                <%= form.label :type_museum, "Museum" %>
+              </li>
+            </ul>
         </div>
       </div>
 
@@ -77,8 +79,8 @@
             <%= form.label :maxprice_2, class: "btn btn-rounded", for: "maxprice-2" do %>
               $$$
             <% end %>
-            
-            <script src="https://code.jquery.com/jquery-3.5.1.js">
+
+
 
 
             <%= form.radio_button :maxprice, "3", class: "btn-check", id: "maxprice-3", autocomplete: "off" %>
@@ -88,6 +90,8 @@
           </div>
         </div>
       </div>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
       <div class="row">
         <h5 class="randomise-text">Randomise</h5>
@@ -104,15 +108,12 @@
       </div>
     </div>
   <% end %>
-</div>
-
-
-<button type="button" class="btn btn-secondary"
+  <button type="button" class="btn btn-secondary"
         data-bs-toggle="popover" data-bs-placement="right"
         data-bs-custom-class="custom-popover"
         data-bs-title="Custom popover"
         data-bs-content="This popover is themed via CSS variables."
-        id="example">>
+        id="example">
   Custom popover
-</button>
-
+  </button>
+</div>
