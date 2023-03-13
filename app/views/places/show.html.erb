@@ -14,19 +14,19 @@
     <h5><%= @place.address %></h5>
   </div>
 
-  <div>
-    <h5>Rating:</h5>
-    <p><%= @place.ratings %></p>
-    <p><%= @place.total_ratings %></p>
-  </div>
-
-  <div>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-    <i class="fa fa-star"></i>
-  </div>
+  <% if @place.ratings.present? %>
+    <div style="display: flex; align-items: center;">
+      <h5 style="margin-right: 10px;">Ratings:</h5>
+      <% (1..5).each do |i| %>
+        <% if i <= @place.ratings %>
+          <i class="fas fa-star" style="color: black;"></i>
+        <% else %>
+          <i class="far fa-star" style="color: black;"></i>
+        <% end %>
+      <% end %>
+      <p style="margin-left: 10px;">(<%= @place.total_ratings %>)</p>
+    </div>
+  <% end %>
 
   <div class="photo" >
     <div class="square">
@@ -34,32 +34,18 @@
         <%= image_tag place_photo_path(photo_ref), class: "squarePhoto" %>
       <% end %>
     </div>
-
-    <%# <div class="reqtangle">
-    <% @place.photos.each do |photo_ref| %>
-        <%# <%= image_tag place_photo_path(photo_ref), class: "reqtanglePhoto" %>
-      <%# <% end %>
-    <%# </div> %>
-  <%# </div> %>
-
-    <div class="bottom-buttons-div">
-    <a class= "bottom-buttons" href="www.google.com">Open in maps</a>
-    <%= link_to "Randomise Again", place_path, class: "bottom-buttons" %>
-    </div>
   </div>
-</div>
 
-
-<div class="container bottom-div-all">
-  <div class="row">
-    <div class="col bottom-div">
-          <%= link_to bookmarks_path, class: "bookmark bottom-links" do %>
-        <i class="fa fa-bookmark"></i>
+  <div class="container">
+    <div class="bg-black text-white py-2 px-4 rounded-full">
+      <% if @place.latitude && @place.longitude %>
+      <% maps_link = "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@place.name)}" %>
+      <a href="<%= maps_link %>" target="_blank">View on Google Maps</a>
       <% end %>
     </div>
 
-    <div class="col bottom-div">
-      <%= link_to raw('<i class="fa fa-home"></i>'), root_path, class: "bookmark bottom-links" %>
+    <div class="bg-black text-white py-2 px-4 rounded-full">
+      <%= link_to "Randomise Again", places_search_path %>
     </div>
   </div>
 </div>

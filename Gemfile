@@ -80,3 +80,5 @@ end
 gem "bootstrap"
 
 gem "bourbon"
+
+gem "tailwindcss-rails", "~> 2.0"
