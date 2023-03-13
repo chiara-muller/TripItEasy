@@ -23,8 +23,8 @@
             <div class="p-6 space-y-6">
                 <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400 w-full">
                   <%= form_with url: places_search_path, method: :get do |form| %>
-                  <div class="row">
-                    <h5>Distance in meters</h5>
+                  <div class="row mb-2">
+                    <h5>Radius (m)</h5>
                     <%= form.range_field :radius, in: 0..3000, id: 'radius-input' %>
                     <p id="radius-value"></p>
                     <script>
@@ -36,8 +36,8 @@
                     </script>
                   </div>
 
-                  <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400 w-full" style="z-index:100">
-                    <div class="dropdown">
+                  <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400 w-full mb-2" style="z-index:100">
+                    <div class="row mb-2 dropdown">
                       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Select an activity
                       </button>
@@ -73,60 +73,10 @@
                     </div>
                   </div>
 
-                  <button id="dropdownRadioButton" data-dropdown-toggle="dropdownDefaultRadio" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown radio <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-
-                  <!-- Dropdown menu -->
-                  <div id="dropdownDefaultRadio" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-                      <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
-                        <li>
-                          <div class="flex items-center">
-                              <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" <%= form.radio_button :type, "bar" %>>
-                              <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><%= form.label :type_bar, "Bar" %></label>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="flex items-center">
-                              <input checked id="default-radio-2" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" <%= form.radio_button :type, "restaurant" %>>
-                              <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><%= form.label :type_restaurant, "Restaurant" %></label>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="flex items-center">
-                              <input id="default-radio-3" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" <%= form.radio_button :type, "cafe" %>>
-                              <label for="default-radio-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><%= form.label :type_museum, "Parc" %></label>
-                          </div>
-                        </li>
-                      </ul>
-                  </div>
-
                   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-                  <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    <div class="container">
-                      <div class="btn-group" data-toggle="buttons">
-                        <%= form.radio_button :maxprice, "0", class: "btn-check", id: "maxprice-0", autocomplete: "off" %>
-                        <%= form.label :maxprice_0, class: "btn btn-primary", for: "maxprice-0" do %>
-                          $
-                        <% end %>
 
-                        <%= form.radio_button :maxprice, "1", class: "btn-check", id: "maxprice-1", autocomplete: "off" %>
-                        <%= form.label :maxprice_1, class: "btn btn-primary", for: "maxprice-1" do %>
-                          $$
-                        <% end %>
-
-                        <%= form.radio_button :maxprice, "2", class: "btn-check", id: "maxprice-2", autocomplete: "off" %>
-                        <%= form.label :maxprice_2, class: "btn btn-primary", for: "maxprice-2" do %>
-                          $$$
-                        <% end %>
-
-                        <%= form.radio_button :maxprice, "3", class: "btn-check", id: "maxprice-3", autocomplete: "off" %>
-                        <%= form.label :maxprice_3, class: "btn btn-primary", for: "maxprice-3" do %>
-                          $$$$
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="inline-flex rounded-md shadow-sm">
+                  <div class="mb-2 inline-flex rounded-md shadow-sm">
                     <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                       <% button_tag "$", type: "submit", name: "maxprice", value: "1", id: "maxprice-1", class: "maxprice-button" %>
                     </button>
