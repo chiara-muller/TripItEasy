@@ -14,18 +14,19 @@
     <h5><%= @place.address %></h5>
   </div>
 
-  <div style="display: flex; align-items: center;">
-    <h5 style="margin-right: 10px;">Ratings:</h5>
-    <% (1..5).each do |i| %>
-      <% if i <= @place.ratings %>
-        <i class="fas fa-star" style="color: white;"></i>
-      <% else %>
-        <i class="far fa-star" style="color: white;"></i>
+  <% if @place.ratings.present? %>
+    <div style="display: flex; align-items: center;">
+      <h5 style="margin-right: 10px;">Ratings:</h5>
+      <% (1..5).each do |i| %>
+        <% if i <= @place.ratings %>
+          <i class="fas fa-star" style="color: white;"></i>
+        <% else %>
+          <i class="far fa-star" style="color: white;"></i>
+        <% end %>
       <% end %>
-    <% end %>
-    <p style="margin-left: 10px;">(<%= @place.total_ratings %>)</p>
-
-  </div>
+      <p style="margin-left: 10px;">(<%= @place.total_ratings %>)</p>
+    </div>
+  <% end %>
 
   <div class = "carosal">
   <input type="radio" name="position" class="circle" checked/>
@@ -37,37 +38,14 @@
     <div class="item">
     <%= image_tag place_photo_path(@place.photos[1]), class: "photo-caro"%>
     </div>
-      <div class="item">
-    <%= image_tag place_photo_path(@place.photos[2]), class: "photo-caro"%>
-    </div>
-      <div class="item">
-    <%= image_tag place_photo_path(@place.photos[3]), class: "photo-caro"%>
-    </div>
-      <div class="item">
-    <%= image_tag place_photo_path(@place.photos[4]), class: "photo-caro"%>
-    </div>
-      <div class="item">
-    <%= image_tag place_photo_path(@place.photos[5]), class: "photo-caro"%>
-    </div>
-    <main>
- </div>
-       <button id="prev-button">Prev</button>
-        <button id="next-button">Next</button>
-
-    <%# <div class="reqtangle">
-    <% @place.photos.each do |photo_ref| %>
-        <%# <%= image_tag place_photo_path(photo_ref), class: "reqtanglePhoto" %>
-      <%# <% end %>
-    <%# </div> %>
-  <%# </div> %>
   </div>
+
   <div class="bottom-buttons-div">
     <% if @place.latitude && @place.longitude %>
       <% maps_link = "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@place.name)}" %>
       <a href="<%= maps_link %>" target="_blank">View on Google Maps</a>
     <% end %>
-    <%= link_to "Randomise Again", place_path, class: "bottom-buttons" %>
-    </div>
+    <%= link_to "Randomise Again", places_search_path, class: "bottom-buttons" %>
   </div>
 </div>
 
