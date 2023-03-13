@@ -10,8 +10,6 @@ class PlacesController < ApplicationController
     radius = params[:radius] || session[:radius]
 
     add_params_to_session if (params[:latitude] || params[:longitude] || params[:type] || params[:radius])
-    # raise
-    # index = params[:index].to_i || 0 # initialize index to 0 or use the value provided in the params
 
     # maxprice = params[:maxprice]
 
@@ -31,7 +29,6 @@ class PlacesController < ApplicationController
 
       # (maxprice <= results['price_level'] || !results.include('price_level'))
       if results.any?
-        # first_result = results[index]
         first_result = results.sample
         place_id = first_result['place_id']
         name = first_result['name']
