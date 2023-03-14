@@ -4,13 +4,15 @@
 @import "config/bootstrap_variables";
 
 // External libraries
-@import "bootstrap/scss/bootstrap";
+// @import "bootstrap/scss/bootstrap";
 @import "font-awesome";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
 @import 'components/buttons';
+@import 'components/revealform';
+@import 'pages/bookmarks';
 
 body {
   background: #ffffff !important;

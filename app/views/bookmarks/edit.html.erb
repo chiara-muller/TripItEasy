@@ -1,0 +1,19 @@
+
+<%# make the below a simple form %>
+
+<div class= "bookmark-header">
+  <h1>Edit Bookmark</h1>
+</div>
+
+<%= simple_form_for @bookmark do |f| %>
+  <%= f.input :list_id, collection: current_user.lists, label: "List" %>
+  <%= f.button :submit, "Save", class: "btn btn-primary" %>
+<% end %>
+
+<!-- The form -->
+<div class="form-popup" id="myForm">
+  <%= simple_form_for @bookmark, html: { class: "form-pop"} do |f| %>
+    <%= f.input :list_id, collection: current_user.lists, label: "List", html: { class: "form-pop-input"} %>
+    <%= f.button :submit, "Save", class: "btn btn-primary", html: { class: "form-pop-submit"} %>
+  <% end %>
+</div>

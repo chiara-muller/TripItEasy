@@ -1,0 +1,98 @@
+.bookmark-body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.bookmark-header {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.3);
+  margin-top: 65px;
+  margin-bottom: 10px;
+}
+
+
+.bookmark-form {
+  background-color: #ffffff;
+}
+
+.bookmark-form-input {
+  background-color: #ffffff;
+}
+
+.bookmark-form-submit {
+  background-color: #000000;
+}
+
+.list-name {
+  background-color: #ffffff;
+}
+
+.nav-title-bookmarks {
+  position: fixed;
+  top: 30px;
+  left: 17px;
+  font-size: 36px;
+}
+
+.bookmark-form-submit-index {
+  background-color: #35af95 !important;
+  color: #ffffff;
+  position: fixed;
+  top: 230px;
+  right: 20px;
+  padding: 9px 14px;
+  border-radius: 4px;
+}
+
+
+.bookmark-form-submit-index {
+  background-color: #35af95 !important;
+  color: #ffffff;
+  position: fixed;
+  top: 230px;
+  right: 20px;
+}
+
+
+.form-label {
+  font-size: 16px;
+}
+
+.trash {
+  padding-right: 7px;
+  padding-left: 7px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  background-color: aqua;
+}
+.edit {
+padding-right: 7px;
+padding-left: 7px;
+padding-bottom: 5px;
+padding-top: 5px;
+margin-top: 0px !important;
+background-color: aquamarine;
+}
+
+.edit-delete-box {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.footer-bookmark-home {
+  display: flex;
+  position: fixed;
+  bottom: 0px;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}

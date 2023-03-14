@@ -1,0 +1,8 @@
+<div class= "bookmark-header">
+  <h1>Update List Title</h1>
+</div>
+
+  <%= simple_form_for @list, html: { class: "bookmark-form"} do |f| %>
+    <%= f.input :name, input_html: { class: 'bookmark-form-input' }, placeholder: "List Name..." %>
+    <%= f.submit "Update List Name", class: "bookmark-form-submit" %>
+  <% end %>

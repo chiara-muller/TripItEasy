@@ -11,8 +11,6 @@
   <div class="text-center w-3/4 m-3">
   Tapas-style plates and infused vodka served in swanky digs with a rooftop bar and antique still.
   </div>
-
-
   <% if @place.ratings.present? %>
     <%# <div style="display: flex; align-items: center;"> %>
       <%# <h5 style="margin-right: 10px;"></h5> %>
@@ -34,14 +32,11 @@
   <% end %>
 
   <div class="m-2 columns-2 md:columns-3 overflow-y-visible">
-
       <% @place.photos.first(10).each do |photo_ref| %>
         <%= image_tag place_photo_path(photo_ref), class: "mb-3 rounded-lg" %>
       <% end %>
-
   </div>
 <div class="w-full flex justify-center mt-6 items-center">
-
     <div class="bg-black text-white py-2 px-6 rounded-full w-34 text-center mr-6">
       <% if @place.latitude && @place.longitude %>
       <% maps_link = "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@place.name)}" %>
@@ -52,6 +47,6 @@
     <div class="bg-black text-white py-2 px-6 rounded-full w-32 text-center">
       <%= link_to "Randomise", places_search_path %>
     </div>
+</div>
 
-</div>
-</div>
+
