@@ -34,9 +34,22 @@ class BookmarksController < ApplicationController
     end
   end
 
+  def edit
+    @bookmark = Bookmark.find(params[:id])
+  end
+
+  def update
+    @bookmark = Bookmark.find(params[:id])
+    if @bookmark.update(bookmark_params)
+      redirect_to @bookmark.list, notice: "Bookmark was successfully updated."
+    else
+      render :edit
+    end
+  end
+
   private
 
   def bookmark_params
-    params.require(:bookmark).permit(:note, :list_id)
+    params.require(:bookmark).permit(:note, :list_id,:place_id,)
   end
 end

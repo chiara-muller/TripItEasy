@@ -5,7 +5,7 @@
 <%= turbo_frame_tag dom_id(@place, :new_list) do  %>
   <%= simple_form_for @list, html: { class: "bookmark-form"} do |f| %>
     <%= f.input :name, input_html: { class: 'bookmark-form-input' }, placeholder: "List Name..." %>
-    <%= f.submit "Create New List", class: "bookmark-form-submit" %>
+    <%= f.submit "Done", class: "bookmark-form-submit" %>
   <% end %>
 
   <div class="list-div">
