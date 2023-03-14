@@ -1,17 +1,14 @@
 <div class="bookmark-body">
-  <div class= "bookmark-header" data-controller="new-list">
-    <h1 class= nav-title-bookmarks>Bookmarks list</h1>
-    <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i> New List</button>
+  <div class="bookmark-header" data-controller="new-list">
+    <h1 class="nav-title-bookmarks">Bookmarks</h1>
+    <button class="open-button" onclick="openForm()">
+      <i class="fa fa-plus" aria-hidden="true"></i> New List
+    </button>
   </div>
   <% @lists.each do |list| %>
     <div class="list-card">
       <%= link_to list.name, list_path(list), class: "List" %>
-      <%= link_to list_path(list.id), data: {turbo_method: :delete, turbo_confirm: "are you sure you want to delete #{list.name}?"} do %>
-          <i class="fas fa-trash-alt bookmark trash"></i>
-          <% end %>
-      <%= link_to edit_list_path(list.id) do %>
-        <i class="fas fa-edit bookmark edit"></i>
-      <% end %>
+      <%= render partial: "components/drop_down", locals: {list: list} %>
     </div>
   <% end %>
 </div>
