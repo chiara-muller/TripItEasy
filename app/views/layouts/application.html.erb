@@ -13,11 +13,11 @@
   </head>
 
   <body>
-    <div class="d-flex flex-column min-vh-100">
+    <div class="d-flex flex-column h-screen">
       <%# <%= render "shared/navbar" %>
       <%= render "shared/flashes" %>
       <%= yield %>
-      <%= render "shared/footer" %>
+      <%= render "shared/footer", class:"sticky bottom-0"%>
     </div>
   </body>
 </html>
