@@ -4,23 +4,29 @@
 .title-container {
   width: 360px;
   margin: auto;
-  margin-top: 30;
+  margin-top: 100px;
+  z-index: 10;
 }
 
 .title {
   text-align: start;
   font-size: 20px;
   font-weight: 300;
-
+  font-family: 'Archivo Black', sans-serif;
 }
 
 .subtitle {
-  font-size: 50px;
-  font-weight: 300;
+  font-size: 45px;
+  font-family: 'Archivo Black', sans-serif;
 }
-
 
 .form-container {
   width: 360px;
   margin: auto;
+}
+
+.img{
+  background: url('background-map.png') no-repeat;
+  background-size: 100%;
+  z-index: -2;
 }
