@@ -20,12 +20,12 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6">
-                <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400 w-full">
+            <div class="p-6 space-y-6 ">
+                <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400 w-full accent-black flex flex-col justify-center items-center">
                   <%= form_with url: places_search_path, method: :get do |form| %>
-                  <div class="row mb-2">
-                    <h5>Radius (m)</h5>
-                    <%= form.range_field :radius, in: 0..3000, id: 'radius-input' %>
+                  <div class="row mb-2 w-72">
+                    <p class="text-sm">Radius (m)</p>
+                    <%= form.range_field :radius, in: 0..3000, id: 'radius-input',class:"text-center"%>
                     <p id="radius-value"></p>
                     <script>
                       var radiusInput = document.getElementById('radius-input');
@@ -35,69 +35,99 @@
                       });
                     </script>
                   </div>
+                  <button id="dropdownRadioButton" data-dropdown-toggle="dropdownDefaultRadio" class="text-white bg-slate-900 hover:bg-slate-900 focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2.5 mb-2 text-center inline-flex flex justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full" type="button">Dropdown radio <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
-                  <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400 w-full mb-2" style="z-index:100">
-                    <div class="row mb-2 dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Select an activity
-                      </button>
-                      <ul class="dropdown-menu dropdown-menu-dark">
-                        <p>Eat/Drink</p>
-                        <li class="dropdown-item">
-                          <%= form.radio_button :type, "bar" %>
-                          <%= form.label :type_bar, "Bar" %>
+                  <!-- Dropdown menu -->
+                  <div id="dropdownDefaultRadio" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+                      <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
+                        <li>
+                          <div class="flex items-center">
+                            <%= form.label :type_bar do %>
+                              <%= form.radio_button :type, "bar", id: "default-radio-1", class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" %>
+                              <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Bar</span>
+                            <% end %>
+                          </div>
                         </li>
-                        <li class="dropdown-item">
-                          <%= form.radio_button :type, "restaurant" %>
-                          <%= form.label :type_restaurant, "Restaurant" %>
+                        <li>
+                          <div class="flex items-center">
+                            <%= form.label :type_restaurant, "Restaurant" do %>
+                              <%= form.radio_button :type, "restaurant", id: "default-radio-2", class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"%>
+                              <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Restaurant</span>
+                            <% end %>
+                          </div>
                         </li>
-                        <li class="dropdown-item">
-                          <%= form.radio_button :type, "cafe" %>
-                          <%= form.label :type_restaurant, "Cafe" %>
+                        <li>
+                          <div class="flex items-center">
+                            <%= form.label :type_cafe, "Cafe" do %>
+                              <%= form.radio_button :type, "cafe", id: "default-radio-3", class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"%>
+                              <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cafe</span>
+                            <% end %>
+                          </div>
                         </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <p>Visit</p>
-                        <li class="dropdown-item">
-                          <%= form.radio_button :type, "museum" %>
-                          <%= form.label :type_museum, "Museum" %>
+                        <li>
+                          <div class="flex items-center">
+                            <%= form.label :type_museum, "Museum" do %>
+                              <%= form.radio_button :type, "museum", id: "default-radio-3", class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"%>
+                              <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Museum</span>
+                            <% end %>
+                          </div>
                         </li>
-                        <li class="dropdown-item">
-                          <%= form.radio_button :type, "art_gallery" %>
-                          <%= form.label :type_museum, "Art Gallery" %>
+                        <li>
+                          <div class="flex items-center">
+                            <%= form.label :type_art_gallery, "Art Gallery" do %>
+                              <%= form.radio_button :type, "art_gallery", id: "default-radio-3", class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"%>
+                              <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Art Gallery</span>
+                            <% end %>
+                          </div>
                         </li>
-                        <li class="dropdown-item">
-                          <%= form.radio_button :type, "parc" %>
-                          <%= form.label :type_museum, "Parc" %>
+                        <li>
+                          <div class="flex items-center">
+                            <%= form.label :type_parc, "Parc" do %>
+                              <%= form.radio_button :type, "parc", id: "default-radio-3", class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"%>
+                              <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Parc</span>
+                            <% end %>
+                          </div>
                         </li>
                       </ul>
-                    </div>
                   </div>
 
                   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-                  <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400 w-full">
+                  <div class="inline-flex rounded-md shadow-sm" role="group">
+                    <button type="button" class="px-10 py-2 text-sm font-medium text-white bg-slate-900 border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                      $
+                    </button>
+                    <button type="button" class="px-11 py-2 text-sm font-medium text-white bg-slate-900 border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                      $$
+                    </button>
+                    <button type="button" class="px-11 py-2 text-sm font-medium text-white bg-slate-900 border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                      $$$
+                    </button>
+                  </div>
+
+                  <%# <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400 w-full">
                     <div class="mb-2 inline-flex rounded-md shadow-sm">
                       <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                         <% button_tag "$", type: "submit", name: "maxprice", value: "1", id: "maxprice-1", class: "maxprice-button" %>
-                      </button>
-                      <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                        <% button_tag "$$", type: "submit", name: "maxprice", value: "2", id: "maxprice-2", class: "maxprice-button" %>
-                      </button>
-                      <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                        <% button_tag "$$$", type: "submit", name: "maxprice", value: "3", id: "maxprice-3", class: "maxprice-button" %>
-                      </button>
-                      <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                        <% button_tag "$$$$", type: "submit", name: "maxprice", value: "4", id: "maxprice-4", class: "maxprice-button" %>
-                      </button>
-                    </div>
-                  </div>
+                      <%# </button> %>
+                      <%# <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> %>
+                        <%# <% button_tag "$$", type: "submit", name: "maxprice", value: "2", id: "maxprice-2", class: "maxprice-button" %>
+                      <%# </button> %>
+                      <%# <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> %>
+                        <%# <% button_tag "$$$", type: "submit", name: "maxprice", value: "3", id: "maxprice-3", class: "maxprice-button" %>
+                      <%# </button> %>
+                      <%# <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> %>
+                        <%# <% button_tag "$$$$", type: "submit", name: "maxprice", value: "4", id: "maxprice-4", class: "maxprice-button" %>
+                      <%# </button> %>
+                    <%# </div> %>
+                  <%# </div> %>
                <% end %>
               </div>
             </div>
             <!-- Modal footer -->
             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button data-modal-hide="defaultModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Apply</button>
-                <button data-modal-hide="defaultModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Done</button>
+                <button data-modal-hide="defaultModal" type="button" class="text-white bg-slate-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">Apply</button>
+                <%# <button data-modal-hide="defaultModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Done</button> %>
             </div>
         </div>
     </div>
