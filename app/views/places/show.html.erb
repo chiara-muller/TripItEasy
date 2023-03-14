@@ -1,87 +1,52 @@
-<div class="container all-show">
-  <div class="bookmark-div">
-    <%= link_to new_place_bookmark_path(@place), class: "bookmark" do %>
+<div class="container overflow-x-hidden w-full flex flex-col items-center p-8">
+  <div class="flex flex-col h-1/4 items-center">
+    <%= link_to new_place_bookmark_path(@place), class: "bookmark place-self-end" do %>
       <i class="fa fa-bookmark"></i>
     <% end %>
-  </div>
-
-
-  <div>
-    <h2><strong><%= @place.name  %></strong></h2>
-  </div>
-
-  <div>
-    <h5><%= @place.address %></h5>
-  </div>
-
-  <% if @place.ratings.present? %>
-    <div style="display: flex; align-items: center;">
-      <h5 style="margin-right: 10px;">Ratings:</h5>
-      <% (1..5).each do |i| %>
-        <% if i <= @place.ratings %>
-          <i class="fas fa-star" style="color: black;"></i>
-        <% else %>
-          <i class="far fa-star" style="color: black;"></i>
-        <% end %>
-      <% end %>
-      <p style="margin-left: 10px;">(<%= @place.total_ratings %>)</p>
+    <h2 class="text-4xl text-center mb-3"><%= @place.name  %></h2>
+    <div>
+      <h5 class="text-lg text-center m-2"><%= @place.address %></h5>
     </div>
+  </div>
+  <div class="text-center w-3/4 m-3">
+  Tapas-style plates and infused vodka served in swanky digs with a rooftop bar and antique still.
+  </div>
+  <% if @place.ratings.present? %>
+    <%# <div style="display: flex; align-items: center;"> %>
+      <%# <h5 style="margin-right: 10px;"></h5> %>
+    <div class="w-3/4 p-2 text-center mt-2 flex justify-center items-center">
+          <% (1..5).each do |i| %>
+            <% if i <= @place.ratings %>
+            <div class="w-8 h-8 ">
+              <i class="fas fa-star text-xl	" style="color: black;"></i>
+            </div>
+            <% else %>
+            <div class="w-8 h-8">
+              <i class="far fa-star text-xl	" style="color: black;"></i>
+            </div>
+            <% end %>
+          <% end %>
+        <%# </div> %>
+    </div>
+          <p class="mb-6">(<%= @place.total_ratings %>)</p>
   <% end %>
 
-  <div class = "carosal">
-  <input type="radio" name="position" class="circle" checked/>
-  <input type="radio" name="position" class="circle" />
-  <input type="radio" name="position" class="circle" />
-  <input type="radio" name="position" class="circle" />
-  <input type="radio" name="position" class="circle" />
-  <main id="carousel">
-    <div class="item">
-    <%= image_tag place_photo_path(@place.photos[1]), class: "photo-caro"%>
-    </div>
+  <div class="m-2 columns-2 md:columns-3 overflow-y-visible">
+      <% @place.photos.first(10).each do |photo_ref| %>
+        <%= image_tag place_photo_path(photo_ref), class: "mb-3 rounded-lg" %>
+      <% end %>
   </div>
-
-  <div class="container">
-    <div class="bg-black text-white py-2 px-4 rounded-full">
+<div class="w-full flex justify-center mt-6 items-center">
+    <div class="bg-black text-white py-2 px-6 rounded-full w-34 text-center mr-6">
       <% if @place.latitude && @place.longitude %>
       <% maps_link = "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@place.name)}" %>
-      <a href="<%= maps_link %>" target="_blank">View on Google Maps</a>
+      <a href="<%= maps_link %>" target="_blank">Google Maps</a>
       <% end %>
     </div>
 
-    <div class="bg-black text-white py-2 px-4 rounded-full">
-      <%= link_to "Randomise Again", places_search_path %>
+    <div class="bg-black text-white py-2 px-6 rounded-full w-32 text-center">
+      <%= link_to "Randomise", places_search_path %>
     </div>
-  </div>
 </div>
 
 
-<script>
-const prevButton = document.querySelector('#prev-button');
-const nextButton = document.querySelector('#next-button');
-const radioButtons = document.querySelectorAll('.carosal input[type="radio"]');
-
-let checkedIndex = 0;
-
-// Find the initially checked radio button index
-radioButtons.forEach((radioButton, index) => {
-  if (radioButton.checked) {
-    checkedIndex = index;
-  }
-});
-
-// Handle the previous button click
-prevButton.addEventListener('click', () => {
-  if (checkedIndex > 0) {
-    radioButtons[checkedIndex - 1].checked = true;
-    checkedIndex--;
-  }
-});
-
-// Handle the next button click
-nextButton.addEventListener('click', () => {
-  if (checkedIndex < radioButtons.length - 1) {
-    radioButtons[checkedIndex + 1].checked = true;
-    checkedIndex++;
-  }
-});
-</script>
