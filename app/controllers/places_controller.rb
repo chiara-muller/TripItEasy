@@ -26,8 +26,7 @@ class PlacesController < ApplicationController
 
       response_hash = JSON.parse(response.read_body)
       results = response_hash['results']
-
-      # (maxprice <= results['price_level'] || !results.include('price_level'))
+      # (maxprice <= results['price_level'] || !results.present('price_level'))
       if results.any?
         first_result = results.sample
         place_id = first_result['place_id']
@@ -50,7 +49,7 @@ class PlacesController < ApplicationController
 
         response_hash = JSON.parse(response.read_body)
         result = response_hash['result']
-
+        # p result
         if result['photos'].any?
           photos = []
           result['photos'].each do |photo|
@@ -60,6 +59,7 @@ class PlacesController < ApplicationController
         else
           "Sorry no photos"
         end
+        # summary = result['editorial_summary']['overview']
         total_ratings = result['user_ratings_total']
         @place = Place.find_by(google_place_id: place_id)
         @place ||= Place.create(name: name, google_place_id: place_id, address: address, photos: photos, latitude: coordinates['lat'], longitude: coordinates['lng'], ratings: ratings, total_ratings: total_ratings)

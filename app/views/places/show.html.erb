@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="text-center w-3/4 m-3">
-  Tapas-style plates and infused vodka served in swanky digs with a rooftop bar and antique still.
+    <%#= @place.desciption %>
   </div>
   <% if @place.ratings.present? %>
     <%# <div style="display: flex; align-items: center;"> %>
@@ -30,7 +30,6 @@
     </div>
           <p class="mb-6">(<%= @place.total_ratings %>)</p>
   <% end %>
-
   <div class="m-2 columns-2 md:columns-3 overflow-y-visible">
       <% @place.photos.first(10).each do |photo_ref| %>
         <%= image_tag place_photo_path(photo_ref), class: "mb-3 rounded-lg" %>
