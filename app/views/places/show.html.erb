@@ -70,8 +70,10 @@
   </div>
 
   <div class="m-2 columns-2 md:columns-3 overflow-y-visible">
+    <% if @place.photos.present? %>
       <% @place.photos.first(10).each do |photo_ref| %>
         <%= image_tag place_photo_path(photo_ref), class: "mb-3 rounded-lg" %>
       <% end %>
+    <% end %>
   </div>
 </div>

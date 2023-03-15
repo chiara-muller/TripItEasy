@@ -50,7 +50,7 @@ class PlacesController < ApplicationController
         response_hash = JSON.parse(response.read_body)
         result = response_hash['result']
         # p result
-        if result['photos'].any?
+        if result['photos'].present?
           photos = []
           result['photos'].each do |photo|
             photo_reference = photo['photo_reference']
