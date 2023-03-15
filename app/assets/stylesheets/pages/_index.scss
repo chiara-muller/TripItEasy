@@ -80,10 +80,15 @@ body.home {
   color: black
 }
 
-.bookmark {
-  margin-top: 5px;
+.bookmark-left {
   color: rgb(0, 0, 0);
   font-size: 20px;
+}
+
+.bookmark-right {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  border-left: 1px solid #000000;
 }
 
 p {
@@ -93,6 +98,7 @@ p {
 
 
 .List {
+  text-decoration: none;
   border-bottom: 1px solid #000000;
   color: rgb(0, 0, 0);
   display: flex;
@@ -112,7 +118,7 @@ p {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .bookmark-form {
@@ -149,11 +155,23 @@ p {
   justify-content: center;
   padding: 5px 50%;
   background-color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .bottom-div {
   width:95%;
   background-color: #ffffff;
+}
+
+.bottom-div-home {
+  width:95%;
+  background-color: #ffffff;
+  color: #cbd5e1;
+}
+
+.home-symbol {
+  color: #cbd5e1;
 }
 
 .bottom-div-all {

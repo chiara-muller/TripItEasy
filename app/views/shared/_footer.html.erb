@@ -1,12 +1,14 @@
 
 <div class="mt-auto">
-  <div class="row ">
-    <div class="col bottom-div bg-black">
-      <%= link_to raw('<i class="fa fa-home"></i>'), root_path, class: "bookmark bottom-links bg-black text-white" %>
+  <div class="footer-bookmark-home">
+    <div class="col bottom-div-home">
+      <%= link_to root_path, class: "bookmark-left bottom-links" do %>
+      <i class="fa fa-home home-symbol"></i>
+      <% end %>
     </div>
-    <div class="col bottom-div bg-black">
-          <%= link_to bookmarks_path, class: "bookmark bottom-links bg-black text-white" do %>
-        <i class="fa fa-bookmark"></i>
+    <div class="col bottom-div">
+          <%= link_to bookmarks_path, class: "bookmark-right bottom-links" do %>
+        <i class="fa fa-bookmark bookmark-symbol"></i>
       <% end %>
     </div>
   </div>

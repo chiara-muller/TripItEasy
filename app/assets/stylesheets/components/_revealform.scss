@@ -106,10 +106,24 @@
   justify-content: center;
   align-items: center;
   border-radius: 2px;
+  font-size: 16px;
 }
 
 .bookmark-form-input-index {
   width: 95%;
   background-color: #ffffff;
+  margin-left: 4px;
+}
+
+.cancel {
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-top: 10px;
   margin-left: 4px;
 }
