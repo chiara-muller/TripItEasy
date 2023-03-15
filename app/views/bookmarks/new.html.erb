@@ -1,12 +1,20 @@
-<div class= "bookmark-header">
+<div class= "bookmark-header-new">
   <h1>Save Bookmark</h1>
 </div>
 
 <%= turbo_frame_tag dom_id(@place, :new_list) do  %>
-  <%= simple_form_for @list, html: { class: "bookmark-form"} do |f| %>
-    <%= f.input :name, input_html: { class: 'bookmark-form-input' }, placeholder: "List Name..." %>
-    <%= f.submit "Done", class: "bookmark-form-submit" %>
+<div class="form-popup" id="myForm">
+  <%= simple_form_for @list, html: { class: "bookmark-form-index" } do |f| %>
+    <%= f.input :name, input_html: { class: 'bookmark-form-input-index' }, placeholder: "List Name..." %>
+    <%= f.submit "Done", class: "bookmark-form-submit-index" %>
   <% end %>
+  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+</div>
+<div class="div-new-button">
+    <button class="open-button-new" onclick="openForm()">
+      <i class="fa fa-plus" aria-hidden="true"></i> New List
+    </button>
+</div>
 
   <div class="list-div">
     <% @lists.each do |list| %>
@@ -14,3 +22,16 @@
     <% end %>
   </div>
 <% end %>
+
+
+
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
