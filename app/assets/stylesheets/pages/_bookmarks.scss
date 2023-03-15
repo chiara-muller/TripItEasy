@@ -66,20 +66,27 @@
 }
 
 .trash {
-  padding-right: 7px;
-  padding-left: 7px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  background-color: aqua;
+  text-decoration: none;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-bottom: 17px;
+  padding-top: 17px;
+  background-color: #c24c67 !important;
+  color: white;
+  border-radius: 4px;
 }
+
 .edit {
-padding-right: 7px;
-padding-left: 7px;
-padding-bottom: 5px;
-padding-top: 5px;
-margin-top: 0px !important;
-background-color: aquamarine;
+  text-decoration: none;
+  padding-right: 37px;
+  padding-left: 37px;
+  padding-bottom: 17px;
+  padding-top: 17px;
+  background-color: #c24c67 !important;
+  color: white;
+  border-radius: 4px;
 }
+
 
 .edit-delete-box {
   display: flex;
