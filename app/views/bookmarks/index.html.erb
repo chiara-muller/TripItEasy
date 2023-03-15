@@ -5,6 +5,7 @@
       <i class="fa fa-plus" aria-hidden="true"></i> New List
     </button>
   </div>
+  <div class="bookmark-lists">
   <% @lists.each do |list| %>
     <div class="list-card">
       <%= link_to list.name, list_path(list), class: "List" %>
