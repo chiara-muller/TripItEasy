@@ -8,9 +8,11 @@
       <h5 class="text-lg text-center m-2"><%= @place.address %></h5>
     </div>
   </div>
-  <div class="text-center w-3/4 m-3">
-    <%#= @place.desciption %>
-  </div>
+    <% if @place.description.present? %>
+      <div class="text-center w-3/4 m-3">
+        <%= @place.description %>
+      </div>
+    <% end %>
   <% if @place.ratings.present? %>
     <%# <div style="display: flex; align-items: center;"> %>
       <%# <h5 style="margin-right: 10px;"></h5> %>

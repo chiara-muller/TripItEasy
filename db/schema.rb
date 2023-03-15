@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_233358) do
     t.datetime "updated_at", null: false
     t.jsonb "photos"
     t.integer "total_ratings"
-    t.text "desciption"
+    t.text "description"
   end
 
   create_table "users", force: :cascade do |t|

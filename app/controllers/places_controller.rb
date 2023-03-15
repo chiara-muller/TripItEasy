@@ -59,10 +59,10 @@ class PlacesController < ApplicationController
         else
           "Sorry no photos"
         end
-        # summary = result['editorial_summary']['overview']
+        summary = result['editorial_summary'] ? result['editorial_summary']['overview'] : result['editorial_summary']
         total_ratings = result['user_ratings_total']
         @place = Place.find_by(google_place_id: place_id)
-        @place ||= Place.create(name: name, google_place_id: place_id, address: address, photos: photos, latitude: coordinates['lat'], longitude: coordinates['lng'], ratings: ratings, total_ratings: total_ratings)
+        @place ||= Place.create(name: name, google_place_id: place_id, address: address, photos: photos, latitude: coordinates['lat'], longitude: coordinates['lng'], ratings: ratings, total_ratings: total_ratings, description: summary)
         redirect_to place_path(@place)
       else
         redirect_back fallback_location: root_path, notice: "No results for search"
