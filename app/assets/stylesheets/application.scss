@@ -15,11 +15,18 @@
 @import 'pages/bookmarks';
 
 body {
-  background: #ffffff !important;
+  background: #ffffff;
   color: rgb(0, 0, 0);
   font-family: 'Inter', sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .custom-checkbox {
   margin-top: 10px;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
