@@ -1,52 +1,70 @@
-<div class="container overflow-x-hidden w-full flex flex-col items-center p-8">
-  <div class="flex flex-col h-1/4 items-center">
-    <%= link_to new_place_bookmark_path(@place), class: "bookmark place-self-end" do %>
-      <i class="fa fa-bookmark"></i>
-    <% end %>
-    <h2 class="text-4xl text-center mb-3"><%= @place.name  %></h2>
+<% sub_section = /, Melbourne, City of Melbourne, Victoria, \d{3,6}, Australia/ %>
+<% short_address = @place.address.sub(sub_section,'') %>
+<% street_address = short_address.sub(/,[^,]+$/, '') %>
+<% address_area = short_address.sub(/.+, /,'') %>
+
+<div class="container overflow-x-hidden w-full flex flex-col items-start p-3">
+  <div class="flex justify-between w-full mb-12 mt-3">
+    <div class="text-center">
+      <%= link_to places_search_path, class: "text-2xl text-black border-2 border-black rounded-full p-2" do %>
+      <i class="fa fa-refresh" aria-hidden="true"></i>
+      <% end %>
+    </div>
     <div>
-      <h5 class="text-lg text-center m-2"><%= @place.address %></h5>
+      <%= link_to new_place_bookmark_path(@place), class: "bookmark place-self-end no-underline border-2 border-black px-4 py-2 rounded-full" do %>
+        <i class="fa fa-bookmark "></i> &nbsp Bookmark
+      <% end %>
     </div>
   </div>
-    <% if @place.description.present? %>
-      <div class="text-center w-3/4 m-3">
-        <%= @place.description %>
+  <div class="flex justify-between items-center w-80">
+    <% if @place.ratings.present? %>
+      <div class="p-2 text-center flex justify-center items-center ">
+        <% (1..5).each do |i| %>
+          <% if i <= @place.ratings %>
+          <div class="w-5 h-5 ">
+            <i class="fas fa-star text-md	" style="color: black;"></i>
+          </div>
+          <% else %>
+          <div class="w-5 h-5">
+            <i class="far fa-star text-md	" style="color: black;"></i>
+          </div>
+          <% end %>
+        <% end %>
+        <p class="ml-3 mt-1">(<%= @place.total_ratings %>)</p>
       </div>
     <% end %>
-  <% if @place.ratings.present? %>
-    <%# <div style="display: flex; align-items: center;"> %>
-      <%# <h5 style="margin-right: 10px;"></h5> %>
-    <div class="w-3/4 p-2 text-center mt-2 flex justify-center items-center">
-          <% (1..5).each do |i| %>
-            <% if i <= @place.ratings %>
-            <div class="w-8 h-8 ">
-              <i class="fas fa-star text-xl	" style="color: black;"></i>
-            </div>
-            <% else %>
-            <div class="w-8 h-8">
-              <i class="far fa-star text-xl	" style="color: black;"></i>
-            </div>
-            <% end %>
-          <% end %>
-        <%# </div> %>
+  </div>
+  <div class="ml-2">
+    <div class="flex flex-col h-1/4 mb-8">
+      <h2 class="text-4xl mb-3"><%= @place.name  %></h2>
+      <div class="w-3/4 my-3 text-slate-400">
+         <% if @place.description.present? %>
+            <%= @place.description %>
+         <% end %>
+      </div>
+
+      <div class="bg-black text-white no-underline rounded-lg px-3 py-3 text-start w-64 ">
+        <% if @place.latitude && @place.longitude %>
+        <% maps_link = "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@place.name)}" %>
+        <a href="<%= maps_link %>" target="_blank" class="no-underline text-white flex flex-row justify-between">
+        <div class="flex flex-col justify-center">
+          <div class="font-semibold text-lg"><%=street_address%></div>
+          <div class="font-base opacity-70 text-white"><%=address_area%></div>
+        </div>
+        <div class="text-2xl">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+          </svg>
+        </div>
+        </a>
+        <% end %>
+      </div>
     </div>
-          <p class="mb-6">(<%= @place.total_ratings %>)</p>
-  <% end %>
+  </div>
+
   <div class="m-2 columns-2 md:columns-3 overflow-y-visible">
       <% @place.photos.first(10).each do |photo_ref| %>
         <%= image_tag place_photo_path(photo_ref), class: "mb-3 rounded-lg" %>
       <% end %>
   </div>
-<div class="w-full flex justify-center mt-6 items-center">
-    <div class="bg-black text-white py-2 px-6 rounded-full w-34 text-center mr-6">
-      <% if @place.latitude && @place.longitude %>
-      <% maps_link = "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@place.name)}" %>
-      <a href="<%= maps_link %>" target="_blank">Google Maps</a>
-      <% end %>
-    </div>
-
-    <div class="bg-black text-white py-2 px-6 rounded-full w-32 text-center">
-      <%= link_to "Randomise", places_search_path %>
-    </div>
-</div>
 </div>
