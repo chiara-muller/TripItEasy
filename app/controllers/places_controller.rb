@@ -22,11 +22,10 @@ class PlacesController < ApplicationController
       request = Net::HTTP::Get.new(url)
 
       response = https.request(request)
-      # puts response.read_body
 
       response_hash = JSON.parse(response.read_body)
       results = response_hash['results']
-      # (maxprice <= results['price_level'] || !results.present('price_level'))
+
       if results.any?
         first_result = results.sample
         place_id = first_result['place_id']
@@ -34,8 +33,6 @@ class PlacesController < ApplicationController
         address = first_result['formatted_address']
         coordinates = first_result['geometry']['location']
         ratings = first_result['rating']
-
-        # maps_link = "https://www.google.com/maps/search/?api=1&query=#{coordinates['lat']},#{coordinates['lng']}"
 
         url = URI("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&key=#{ENV['GOOGLE_API']}")
 
@@ -45,12 +42,11 @@ class PlacesController < ApplicationController
         request = Net::HTTP::Get.new(url)
 
         response = https.request(request)
-        # puts response.read_body
 
         response_hash = JSON.parse(response.read_body)
         result = response_hash['result']
-        # p result
-        if result['photos'].any?
+
+        if result['photos'].present?
           photos = []
           result['photos'].each do |photo|
             photo_reference = photo['photo_reference']

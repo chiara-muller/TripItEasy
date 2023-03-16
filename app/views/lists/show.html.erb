@@ -1,12 +1,33 @@
-<div class= "bookmark-header parent" data-controller="new-list">
-  <%= link_to "Go back", bookmarks_path, class: "bookmark-form-submit child-left" %>
-  <h1 class = "child-middle"><%= @list.name%></h1>
-  </div>
-<div class="list-div">
-  <% @list.bookmarks.each do |bookmark|  %>
-    <div class="list-card">
-      <%= link_to bookmark.place.name, place_path(bookmark.place), class: "List" %>
-      <%= render partial: "components/drop_down_show", locals: {bookmark: bookmark} %>
+<div>
+  <div class= "pt-10 mb-5 flex items-center justify-between" data-controller="new-list">
+    <h1 class = "ml-6 text-2xl"><%= @list.name%></h1>
+    <%= link_to bookmarks_path, class: "mr-6 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-3 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+      </svg>
+    <% end %>
     </div>
-  <% end %>
+    <div>
+      <div class="mt-6 flow-root">
+        <ul role="list" class="-my-5 divide-y divide-gray-200">
+          <% @list.bookmarks.each do |bookmark|  %>
+            <li class="py-4 px-4 list-none">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0">
+                  <% if bookmark.place.photos.present? %>
+                    <%= image_tag place_photo_path(bookmark.place.photos[0]), class: "h-8 w-8 rounded-full" %>
+                  <% end %>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <%= link_to bookmark.place.name, place_path(bookmark.place), class: "truncate text-sm font-medium text-gray-900 block" %>
+                </div>
+                <div>
+                  <%= render partial: "components/drop_down_show", locals: {bookmark: bookmark} %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 </div>

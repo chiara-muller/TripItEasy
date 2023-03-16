@@ -1,29 +1,43 @@
-<div class= "bookmark-header-new">
-  <h1>Save Bookmark</h1>
-</div>
-
 <%= turbo_frame_tag dom_id(@place, :new_list) do  %>
-<div class="form-popup" id="myForm">
-  <%= simple_form_for @list, html: { class: "bookmark-form-index" } do |f| %>
-    <%= f.input :name, input_html: { class: 'bookmark-form-input-index' }, placeholder: "List Name..." %>
-    <%= f.submit "Done", class: "bookmark-form-submit-index" %>
-  <% end %>
-  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-</div>
-<div class="div-new-button">
+  <div class="form-popup" id="myForm">
+    <%= simple_form_for @list, html: { class: "bookmark-form-index" } do |f| %>
+      <%= f.input :name, input_html: { class: 'bookmark-form-input-index' }, placeholder: "List Name..." %>
+      <%= f.submit "Done", class: "bookmark-form-submit-index" %>
+    <% end %>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </div>
+  <div class="div-new-button">
     <button class="open-button-new" onclick="openForm()">
       <i class="fa fa-plus" aria-hidden="true"></i> New List
     </button>
-</div>
-
-  <div class="list-div">
-    <% @lists.each do |list| %>
-      <%= link_to list.name, place_bookmarks_path(@place, bookmark: {list_id: list.id}), data: {turbo_method: :post, turbo_frame: "_top"}, class: "List" %> <br>
-    <% end %>
   </div>
+
+  <div class="mt-6 flow-root">
+    <ul role="list" class="divide-y divide-gray-200">
+      <% @lists.each do |list| %>
+        <li class="py-4 px-4 list-none">
+          <div class="flex items-center space-x-4">
+
+            <div class="flex-shrink-0">
+              <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <%= link_to list.name, place_bookmarks_path(@place, bookmark: {list_id: list.id}), data: {turbo_method: :post, turbo_frame: "_top"}, class: "truncate text-sm font-medium text-gray-900 block" %>
+              <p class="truncate text-sm text-gray-500"> <%= list.bookmarks.count  %> </p>
+            </div>
+
+            <div>
+              <%= render partial: "components/drop_down", locals: {list: list} %>
+            </div>
+
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
 <% end %>
-
-
 
 
 <script>
