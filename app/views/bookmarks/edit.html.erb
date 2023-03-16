@@ -1,19 +1,6 @@
-
-<%# make the below a simple form %>
-
-<div class= "bookmark-header">
-  <h1>Edit Bookmark</h1>
-</div>
-
-<%= simple_form_for @bookmark do |f| %>
-  <%= f.input :list_id, collection: current_user.lists, label: "List" %>
-  <%= f.button :submit, "Save", class: "btn btn-primary" %>
-<% end %>
-
-<!-- The form -->
-<div class="form-popup" id="myForm">
-  <%= simple_form_for @bookmark, html: { class: "form-pop"} do |f| %>
-    <%= f.input :list_id, collection: current_user.lists, label: "List", html: { class: "form-pop-input"} %>
-    <%= f.button :submit, "Save", class: "btn btn-primary", html: { class: "form-pop-submit"} %>
+<div class="my-10 mx-6">
+  <%= simple_form_for @bookmark do |f| %>
+    <%= f.input :list_id, collection: current_user.lists, label: "Choose a new list:", class: 'block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder: "List name..." %>
+    <%= f.submit "Update", class: "text-white bg-sky-400 hover:bg-sky-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
   <% end %>
 </div>
